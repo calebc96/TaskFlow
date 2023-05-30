@@ -4,6 +4,8 @@ const db = require("./config/connection");
 
 const PORT = 3001;
 const app = express();
+//require the Tasks model to access schema
+const { Task } = require("./models");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
