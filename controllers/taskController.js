@@ -37,6 +37,7 @@ module.exports = {
   //edit or update a task
   updateTask(req, res) {
     console.log(req.body);
+    console.log(req.params.taskId);
     Task.findOneAndUpdate(
       { _id: req.params.taskId },
       { $set: req.body },
