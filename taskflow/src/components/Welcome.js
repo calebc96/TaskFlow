@@ -1,36 +1,40 @@
-import React from 'react';
+import React from "react";
+import Button from "@mui/material/Button";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import "../styles/Header.css";
 
-// Here we destructure our props into their own distinct variables
-export default function Welcome({ loggedIn, setLoggedIn }) {
-  // Lets log our our loggedIn variable to see it change in real time
-  console.log('Welcome -> loggedIn', loggedIn);
-
-  // If we are loggedIn render one set of elements, and if not we render another
+export default function Nav() {
   return (
     <div>
-      {/* Conditional (ternary) operator is checking to see if loggedIn is true. If so render the following: */}
-      {loggedIn ? (
-        <div>
-          <span role="img" aria-label="tada">
-            🎉
-          </span>
-          <h3>You are signed in!</h3>
-          <button type="button" onClick={() => setLoggedIn(!loggedIn)}>
-            Log out
-          </button>
-        </div>
-      ) : (
-        // If we are logged out, render this:
-        <div>
-          <span role="img" aria-label="stopsign">
-            🛑
-          </span>
-          <h3>You are currently logged out</h3>
-          <button type="button" onClick={() => setLoggedIn(!loggedIn)}>
-            Log in
-          </button>
-        </div>
-      )}
+      <nav>
+        <h1>TaskFlow</h1>
+        <Button color="success" variant="contained">
+          Create
+        </Button>
+      </nav>
+      <div>
+        {" "}
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography>Recent</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+              eget.
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+      </div>
     </div>
   );
 }
