@@ -5,12 +5,34 @@
 
 .side-bar {
     height: 100vh;
+    color: #5F5C5C;
+    font-weight: 700;
+    background-color: #151313;
+    padding-left: 20px;
+    padding-top: 20px;
+    border-top: .001rem solid rgb(78, 78, 78);
 }
 
 .background-image {
-    /* background-image: url("../images/png-test.jpg"); */
-    width: 800px;
-    height: 800px;
+    background-image: url("../images/reflection.jpg");
+    background-color: #151313;
+    background-size: cover;
     background-repeat: no-repeat;
+}
 
+.dropdown-menu{
+    background-color: #151313;
+    color: white;
+}
+
+#nav-dropdown-dark-example {
+    color: rgb(86, 86, 86);
+}
+.tasks {
+    display: flex;
+}
+
+.dropdown-item {
+    color: rgb(154, 154, 154);
+    font-weight: 500;
 }

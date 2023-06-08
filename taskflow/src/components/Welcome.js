@@ -37,7 +37,7 @@ export default function Navigation() {
                 </NavDropdown>
               </Nav>
               <Button variant="success" className="create-button">
-                Get Started
+                Create Board
               </Button>
             </Navbar.Collapse>
           </Container>

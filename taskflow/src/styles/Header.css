@@ -4,6 +4,7 @@
 }
 
 .nav-header {
+  width: 100vw;
   display: flex;
   align-items: center;
   background-color: #151313;
