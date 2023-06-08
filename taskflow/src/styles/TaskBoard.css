@@ -1,0 +1,16 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.side-bar {
+    height: 100vh;
+}
+
+.background-image {
+    /* background-image: url("../images/png-test.jpg"); */
+    width: 800px;
+    height: 800px;
+    background-repeat: no-repeat;
+
+}

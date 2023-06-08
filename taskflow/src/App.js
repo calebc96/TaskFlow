@@ -1,7 +1,7 @@
-import Nav from "./components/Welcome";
+import Navigation from "./components/Welcome";
 
 function App() {
-  return <Nav />;
+  return <Navigation />;
 }
 
 export default App;
