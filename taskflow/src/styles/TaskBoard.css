@@ -3,17 +3,7 @@
     padding: 0px;
 }
 
-.side-bar {
-    height: 100vh;
-    color: #5F5C5C;
-    font-weight: 700;
-    background-color: #151313;
-    padding-left: 20px;
-    padding-top: 20px;
-    border-top: .001rem solid rgb(78, 78, 78);
-}
-
-.background-image {
+.board-background {
     background-image: url("../images/reflection.jpg");
     background-color: #151313;
     background-size: cover;
@@ -28,11 +18,62 @@
 #nav-dropdown-dark-example {
     color: rgb(86, 86, 86);
 }
-.tasks {
-    display: flex;
-}
 
 .dropdown-item {
     color: rgb(154, 154, 154);
     font-weight: 500;
 }
+
+.board-list {
+    background-color: #222222;
+    list-style-type: none;
+    color: rgb(157, 152, 152);
+    font-weight: 600;
+    border: none;
+    transition: .5s;
+}
+
+
+.board-list:hover {
+    background: rgb(86, 86, 86);
+    cursor: pointer;
+}
+
+.off-canvas {
+    background-color: #222222;
+}
+
+.close-button  {
+    color: rgb(110, 109, 109);
+}
+.btn-close{
+    color: white;
+    background-color: rgb(91, 89, 89);
+}
+
+.offcanvas-body {
+    padding: 0;
+    margin: 0;
+}
+
+.view-allboards {
+ height: 100vh;
+ width: 2vw;
+ background-color: #222222;
+ border: none;
+ color: white;
+ text-align: right;
+ transition: .5s;
+}
+
+.view-allboards:hover {
+    cursor: pointer;
+    background-color: #2f2f2f;
+}
+
+@media  (max-width: 480px) {
+ .view-allboards {
+    width: 6vw;
+ }
+    
+  }

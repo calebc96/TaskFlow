@@ -3,6 +3,7 @@
     "start": "concurrently \"node server.js\" \"cd taskflow && npm start\""
   },
   "dependencies": {
+    "bootstrap-icons": "^1.10.5",
     "concurrently": "^8.1.0",
     "express.js": "^1.0.0",
     "mongodb": "^5.6.0",

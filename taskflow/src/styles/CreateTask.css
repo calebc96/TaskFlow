@@ -1,16 +1,81 @@
-/* .create-image {
-background: url(https://tse3.mm.bing.net/th?id=OIP.zJWy-U_ABuCFwwDW9umYfwHaDU&pid=Api&P=0&h=180);
+.modal-footer {
+    align-self: center;
 }
 
-.Create-board {
-    top: 100px;
-    left: 500px;
-    position: absolute;
-    width: 369px;
-    height: 493px;
-    background: #151313;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: center;
+.modal-content {
+    background-color: #151313;
+    align-self: center;
+    color: grey;
+    font-weight: 500;
+}
 
-} */
+.board-image {
+    background-image: url("../images/reflection.jpg");
+    margin-top: 15px;
+    height: 15vh;
+    width: 40vh;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #151313;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: 2px solid black;
+}
+
+.board-images {
+    background-image: url("../images/reflection.jpg");
+    height: 10vh;
+    width: 10vh;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #151313;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: grab;
+}
+
+.image-selection {
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.createboard-button {
+    width: 30vw;
+}
+
+.create-footer {
+    padding: 25px;
+}
+
+@media (max-width: 480px) {
+    .createboard-button {
+        width: 70vw;
+    }
+}
+
+input {
+    background-color: #222121;
+    color: rgb(163, 163, 163);
+    margin-left: 10px;
+    margin-right: 10px;
+    border: none;
+    margin-top: 5px;
+}
+
+input:active{
+    border: none;
+    cursor:default;
+}
+
+
+.required-title {
+    font-size: 10px;
+    padding-top: 2px;
+}
+
+label {
+    margin-left: 10px;
+    margin-top: 5px;
+}
