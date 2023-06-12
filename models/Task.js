@@ -9,11 +9,6 @@ const taskSchema = new Schema({
     type: String,
     required: true,
   },
-  backgroundImage: {
-    type: Number,
-    default: 1,
-    required: true,
-  },
   dueDate: {
     type: Date,
     required: true,
