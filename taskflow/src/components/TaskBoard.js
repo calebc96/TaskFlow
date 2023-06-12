@@ -4,6 +4,7 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Created from "./CreatedTask";
 
 export default function TaskBoard() {
   const [show, setShow] = useState(false);
@@ -14,6 +15,7 @@ export default function TaskBoard() {
   return (
     <div className="board-background">
       <div className="view-allboards" onClick={handleShow}>
+        <Created />
         <FontAwesomeIcon icon="fa-solid fa-check-square" />
       </div>
       <Offcanvas className="off-canvas" show={show} onHide={handleClose}>

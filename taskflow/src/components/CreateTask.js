@@ -20,7 +20,7 @@ export default function Create() {
           <Modal.Title>Create Board</Modal.Title>
         </Modal.Header>
         <img className="board-image"></img>
-        <label>Background</label>
+        <label> Choose Background</label>
         <div className="image-selection">
           <img className="board-images"></img>
           <img className="board-images"></img>
