@@ -7,7 +7,11 @@ const taskSchema = new Schema({
   },
   description: {
     type: String,
-    required: false,
+    required: true,
+  },
+  background: {
+    type: String,
+    required: true,
   },
   dueDate: {
     type: Date,
