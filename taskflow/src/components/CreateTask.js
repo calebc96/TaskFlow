@@ -49,7 +49,7 @@ export default function Create() {
         <Modal.Header closeButton>
           <Modal.Title>Create Board</Modal.Title>
         </Modal.Header>
-        <img className={`board-image-first board-image-${selectedImage}`} />
+        <img className={`board-image-default board-image-${selectedImage}`} />
         <label>Choose Background</label>
         <div className="image-selection">
           <img

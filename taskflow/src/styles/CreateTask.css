@@ -22,7 +22,7 @@
     border: 2px solid black;
 }
 .board-image-two {
-    background-image: url("../images/reflection.jpg")  !important;
+    background-image: url("../images/Fall.jpg")  !important;
     margin-top: 15px;
     height: 15vh;
     width: 40vh;
@@ -34,7 +34,7 @@
     border: 2px solid black;
 }
 .board-image-three {
-    background-image: url("../images/reflection.jpg")  !important;
+    background-image: url("../images/Winter.jpg")  !important;
     margin-top: 15px;
     height: 15vh;
     width: 40vh;
@@ -46,7 +46,7 @@
     border: 2px solid black;
 }
 .board-image-four {
-    background-image: url("../images/reflection.jpg")  !important;
+    background-image: url("../images/Yosemite.jpg")  !important;
     margin-top: 15px;
     height: 15vh;
     width: 40vh;
@@ -58,7 +58,7 @@
     border: 2px solid black;
 }
 .board-image-five {
-    background-image: url("../images/reflection.jpg")  !important;
+    background-image: url("../images/beach.jpg")  !important;
     margin-top: 15px;
     height: 15vh;
     width: 40vh;
@@ -70,8 +70,8 @@
     border: 2px solid black;
 }
 
-.board-image-first {
-    background-image: url("../images/test.png");
+.board-image-default{
+    background-image: url("../images/reflection.jpg");
     margin-top: 15px;
     height: 15vh;
     width: 40vh;
@@ -97,7 +97,7 @@
 }
 
 .board-images-two{
-    background-image: url("../images/reflection.jpg");
+    background-image: url("../images/Fall.jpg");
     height: 10vh;
     width: 10vh;
     margin-left: auto;
@@ -109,7 +109,7 @@
     cursor: grab;
 }
 .board-images-three{
-    background-image: url("../images/reflection.jpg");
+    background-image: url("../images/Winter.jpg");
     height: 10vh;
     width: 10vh;
     margin-left: auto;
@@ -121,7 +121,7 @@
     cursor: grab;
 }
 .board-images-four{
-    background-image: url("../images/reflection.jpg");
+    background-image: url("../images/Yosemite.jpg");
     height: 10vh;
     width: 10vh;
     margin-left: auto;
@@ -133,7 +133,7 @@
     cursor: grab;
 }
 .board-images-five{
-    background-image: url("../images/reflection.jpg");
+    background-image: url("../images/beach.jpg");
     height: 10vh;
     width: 10vh;
     margin-left: auto;
