@@ -59,28 +59,25 @@ export default function Create() {
             onClick={() => handleImageClick("one")}
           />
           <img
-            src="image-2.jpg"
             className={`board-images-two ${
               selectedImage === 2 ? "selected" : ""
             }`}
             onClick={() => handleImageClick("two")}
           />
           <img
-            src="image-3.jpg"
+            alt=""
             className={`board-images-three ${
               selectedImage === 3 ? "selected" : ""
             }`}
             onClick={() => handleImageClick("three")}
           />
           <img
-            src="image-4.jpg"
             className={`board-images-four ${
               selectedImage === 4 ? "selected" : ""
             }`}
             onClick={() => handleImageClick("four")}
           />
           <img
-            src="image-5.jpg"
             className={`board-images-five ${
               selectedImage === 5 ? "selected" : ""
             }`}
