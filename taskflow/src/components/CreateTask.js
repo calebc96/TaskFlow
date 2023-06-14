@@ -14,7 +14,28 @@ export default function Create() {
   const handleImageClick = (imageIndex) => {
     setSelectedImage(imageIndex);
   };
-
+  const boardValues = [
+    {
+      class: "one",
+      value: 1,
+    },
+    {
+      class: "two",
+      value: 2,
+    },
+    {
+      class: "three",
+      value: 3,
+    },
+    {
+      class: "four",
+      value: 4,
+    },
+    {
+      class: "five",
+      value: 5,
+    },
+  ];
   return (
     <div className="create-board">
       <Button variant="success" onClick={handleShow}>
@@ -29,36 +50,14 @@ export default function Create() {
         <label>Choose Background</label>
 
         <div className="image-selection">
-          <img
-            className={`board-images-one ${
-              selectedImage === 1 ? "selected" : ""
-            }`}
-            onClick={() => handleImageClick("one")}
-          />
-          <img
-            className={`board-images-two ${
-              selectedImage === 2 ? "selected" : ""
-            }`}
-            onClick={() => handleImageClick("two")}
-          />
-          <img
-            className={`board-images-three ${
-              selectedImage === 3 ? "selected" : ""
-            }`}
-            onClick={() => handleImageClick("three")}
-          />
-          <img
-            className={`board-images-four ${
-              selectedImage === 4 ? "selected" : ""
-            }`}
-            onClick={() => handleImageClick("four")}
-          />
-          <img
-            className={`board-images-five ${
-              selectedImage === 5 ? "selected" : ""
-            }`}
-            onClick={() => handleImageClick("five")}
-          />
+          {boardValues.map((data) => (
+            <img
+              className={`board-images-${data.class} ${
+                selectedImage === `${data.value}` ? "selected" : ""
+              }`}
+              onClick={() => handleImageClick(`${data.class}`)}
+            />
+          ))}
         </div>
 
         <label>Board Title</label>
