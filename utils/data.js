@@ -17,4 +17,11 @@ const taskData = [
   },
 ];
 
-module.exports = { taskData };
+const boardData = [
+  {
+    title: "Finish project proposal",
+    backgroundImage: "first",
+  },
+];
+
+module.exports = { taskData, boardData };

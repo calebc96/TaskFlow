@@ -10,7 +10,7 @@ const {
 router.route("/").get(getBoards).post(createBoard);
 
 router
-  .route("/:bourdId")
+  .route("/:boardId")
   .get(getSingleBoard)
   .put(updateBoard)
   .delete(deleteBoard);

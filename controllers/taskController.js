@@ -51,9 +51,9 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
   // Retrieve all boards
+  //retrieves all tasks
   getBoards(req, res) {
     Board.find()
-      .populate("tasks") // Populate tasks associated with each board
       .then((allBoards) => res.json(allBoards))
       .catch((err) => res.status(500).json(err));
   },
