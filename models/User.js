@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose");
-
+const bcrypt = require("bcrypt");
 const boardSchema = require("./Board");
 
 // User Schema
