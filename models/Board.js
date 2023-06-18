@@ -1,7 +1,11 @@
-const mongoose = require("mongoose");
+const { Schema } = require("mongoose");
 
 // Board Schema
-const boardSchema = new mongoose.Schema({
+const boardSchema = new Schema({
+  boardId: {
+    type: String,
+    required: true,
+  },
   title: {
     type: String,
     required: true,
@@ -12,12 +16,10 @@ const boardSchema = new mongoose.Schema({
   },
   tasks: [
     {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "Task",
     },
   ],
 });
 
-const Board = mongoose.model("Board", boardSchema);
-
-module.exports = Board;
+module.exports = boardSchema

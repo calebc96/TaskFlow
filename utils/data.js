@@ -1,4 +1,4 @@
-const taskData = [
+const tasks = [
   {
     title: "Finish project proposal",
     description: "Write and finalize the project proposal document",
@@ -17,11 +17,18 @@ const taskData = [
   },
 ];
 
-const boardData = [
+const boards = [
   {
     title: "Finish project proposal",
     backgroundImage: "first",
   },
 ];
+const users = [
+  {
+    username: "calebcarnett",
+    email: "caleb@gmail.com",
+    password: "Bobby12345$",
+  },
+];
 
-module.exports = { taskData, boardData };
+module.exports = { tasks, boards, users };

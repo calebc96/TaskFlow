@@ -1,4 +1,4 @@
-const Task = require("./Task");
+const User = require("./User");
 const Board = require("./Board");
 
-module.exports = { Task, Board };
+module.exports = { User };
