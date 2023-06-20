@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
-const boardSchema = require("./Board");
+const Board = require("./Board");
 
 // User Schema
 const userSchema = new Schema({
@@ -19,7 +19,7 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  savedBoards: [boardSchema],
+  boards: [{ type: Schema.Types.ObjectId, ref: "Board" }],
 });
 
 // hash user password
