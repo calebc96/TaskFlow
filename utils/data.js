@@ -19,7 +19,6 @@ const tasks = [
 
 const boards = [
   {
-    boardID: "12245323452346",
     title: "Finish project proposal",
     backgroundImage: "first",
   },

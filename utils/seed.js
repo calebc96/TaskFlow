@@ -1,5 +1,5 @@
 const connection = require("../config/connection");
-const { User, boardSchema } = require("../models");
+const { User, Board } = require("../models");
 const { users, boards } = require("./data");
 
 connection.on("error", console.error.bind(console, "connection error:"));
@@ -9,7 +9,7 @@ connection.once("open", async () => {
     // Delete existing users and thoughts if any exist
     await User.deleteMany({});
     // await boardSchema.deleteMany({});
-
+    await Board.insertMany({});
     // Create new users and thoughts
     const createdUsers = await User.insertMany(users);
     console.log(createdUsers);

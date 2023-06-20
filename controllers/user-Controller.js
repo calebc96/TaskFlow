@@ -1,5 +1,5 @@
 // import user model
-const { User } = require("../models");
+const { User, Board } = require("../models");
 // import sign token function from auth
 const { signToken } = require("../utils/auth");
 
@@ -78,19 +78,39 @@ const login = async ({ body }, res) => {
 
 // Save a board for a user
 // user comes from `req.user` created in the auth middleware function
-const saveBoard = async ({ user, body }, res) => {
-  console.log(user);
+const createBoard = async (req, res) => {
+  const { title, backgroundImage } = req.body;
+
   try {
-    const updatedUser = await User.findOneAndUpdate(
-      { _id: user._id },
-      { $addToSet: { savedBoards: body } },
-      { new: true, runValidators: true }
-    );
-    return res.json(updatedUser);
-  } catch (err) {
-    console.log(err);
-    return res.status(400).json(err);
+    // Create a new user object
+    const newBoard = new User({
+      title,
+      backgroundImage,
+    });
+
+    // Save the user to the database
+    const savedBoard = await newBoard.save();
+
+    res.status(201).json(savedBoard);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to create user" });
   }
+};
+
+// Get all Boards
+const getBoards = (req, res) => {
+  Board.find()
+    .then(async (Boards) => {
+      const boardObj = {
+        Boards,
+      };
+      return res.json(boardObj);
+    })
+    .catch((err) => {
+      console.log(err);
+      return res.status(500).json(err);
+    });
 };
 
 // Remove a board from `savedBoards`
@@ -113,6 +133,7 @@ module.exports = {
   getSingleUser,
   createUser,
   login,
-  saveBoard,
+  createBoard,
   deleteBoard,
+  getBoards,
 };

@@ -1,4 +1,4 @@
 const User = require("./User");
 const Board = require("./Board");
 
-module.exports = { User };
+module.exports = { User, Board };
