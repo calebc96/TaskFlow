@@ -98,21 +98,6 @@ const createBoard = async (req, res) => {
   }
 };
 
-// Get all Boards
-const getBoards = (req, res) => {
-  Board.find()
-    .then(async (Boards) => {
-      const boardObj = {
-        Boards,
-      };
-      return res.json(boardObj);
-    })
-    .catch((err) => {
-      console.log(err);
-      return res.status(500).json(err);
-    });
-};
-
 // Remove a board from `savedBoards`
 const deleteBoard = async ({ user, params }, res) => {
   const updatedUser = await User.findOneAndUpdate(
@@ -135,5 +120,4 @@ module.exports = {
   login,
   createBoard,
   deleteBoard,
-  getBoards,
 };

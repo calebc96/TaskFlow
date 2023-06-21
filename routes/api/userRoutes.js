@@ -6,7 +6,6 @@ const {
   createBoard,
   deleteBoard,
   login,
-  getBoards,
 } = require("../../controllers/user-Controller");
 
 // import middleware
@@ -19,7 +18,6 @@ router.route("/login").post(login);
 router.route("/create").post(createBoard);
 router.route("/:userId").get(getSingleUser);
 
-router.route("/boards").get(getBoards);
 // router.route("/:userId").get(authMiddleware, getSingleUser);
 
 router.route("/boards/:boardId").delete(authMiddleware, deleteBoard);
