@@ -16,6 +16,18 @@ const getUsers = (req, res) => {
     });
 };
 
+const getBoards = (req, res) => {
+  Board.find()
+    .populate("Users") // Populate the boards field
+    .then(async (boards) => {
+      return res.json(boards);
+    })
+    .catch((err) => {
+      console.log(err);
+      return res.status(500).json(err);
+    });
+};
+
 // Get a single User
 const getSingleUser = (req, res) => {
   User.findOne({ _id: req.params.userId })
@@ -25,6 +37,22 @@ const getSingleUser = (req, res) => {
         ? res.status(404).json({ message: "No User with that ID" })
         : res.json({
             user,
+          })
+    )
+    .catch((err) => {
+      console.log(err);
+      return res.status(500).json(err);
+    });
+};
+
+const getsingleBoard = (req, res) => {
+  Board.findOne({ _id: req.params.boardId })
+    .select("-__v")
+    .then(async (board) =>
+      !board
+        ? res.status(404).json({ message: "No Board with that ID" })
+        : res.json({
+            board,
           })
     )
     .catch((err) => {
@@ -194,6 +222,8 @@ const updateTask = async (req, res) => {
 };
 
 module.exports = {
+  getsingleBoard,
+  getBoards,
   getUsers,
   getSingleUser,
   createUser,

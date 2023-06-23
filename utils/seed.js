@@ -10,6 +10,7 @@ connection.once("open", async () => {
       username: "john_doe",
       email: "john@example.com",
       password: "password1$",
+      boards: [],
     },
     {
       _id: "649252e9a272d59f6402c801",
