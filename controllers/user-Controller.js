@@ -6,11 +6,9 @@ const { signToken } = require("../utils/auth");
 // Get all Users
 const getUsers = (req, res) => {
   User.find()
-    .then(async (Users) => {
-      const userObj = {
-        Users,
-      };
-      return res.json(userObj);
+    .populate("boards") // Populate the boards field
+    .then(async (users) => {
+      return res.json(users);
     })
     .catch((err) => {
       console.log(err);
@@ -79,11 +77,12 @@ const login = async ({ body }, res) => {
 // Save a board for a user
 // user comes from `req.user` created in the auth middleware function
 const createBoard = async (req, res) => {
-  const { title, backgroundImage } = req.body;
+  const { user, title, backgroundImage } = req.body;
 
   try {
     // Create a new user object
     const newBoard = new User({
+      user,
       title,
       backgroundImage,
     });
@@ -112,6 +111,87 @@ const deleteBoard = async ({ user, params }, res) => {
   }
   return res.json(updatedUser);
 };
+// Create a task
+const createTask = async (req, res) => {
+  const {
+    boardId,
+    title,
+    description,
+    dueDate,
+    completed,
+    priority,
+    createdBy,
+  } = req.body;
+
+  try {
+    // Create a new task object
+    const newTask = new Task({
+      board: boardId,
+      title,
+      description,
+      dueDate,
+      completed,
+      priority,
+      createdBy,
+    });
+
+    // Save the task to the database
+    const savedTask = await newTask.save();
+
+    res.status(201).json(savedTask);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to create task" });
+  }
+};
+// Delete a task
+const deleteTask = async (req, res) => {
+  const { taskId } = req.params;
+
+  try {
+    // Find the task by its ID and delete it
+    const deletedTask = await Task.findByIdAndDelete(taskId);
+
+    if (!deletedTask) {
+      return res.status(404).json({ message: "Task not found" });
+    }
+
+    res.json({ message: "Task deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to delete task" });
+  }
+};
+
+// Update a task
+const updateTask = async (req, res) => {
+  const { taskId } = req.params;
+  const { title, description, dueDate, completed, priority } = req.body;
+
+  try {
+    // Find the task by its ID and update its fields
+    const updatedTask = await Task.findByIdAndUpdate(
+      taskId,
+      {
+        title,
+        description,
+        dueDate,
+        completed,
+        priority,
+      },
+      { new: true }
+    );
+
+    if (!updatedTask) {
+      return res.status(404).json({ message: "Task not found" });
+    }
+
+    res.json(updatedTask);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to update task" });
+  }
+};
 
 module.exports = {
   getUsers,
@@ -120,4 +200,7 @@ module.exports = {
   login,
   createBoard,
   deleteBoard,
+  createTask,
+  deleteTask,
+  updateTask,
 };

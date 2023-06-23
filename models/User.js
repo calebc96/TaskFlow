@@ -18,7 +18,7 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  boards: [{ type: Schema.Types.ObjectId, ref: "Board" }],
+  boards: { type: Schema.Types.ObjectId, ref: "Board" },
 });
 
 // hash user password
