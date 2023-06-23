@@ -10,14 +10,12 @@ connection.once("open", async () => {
       username: "john_doe",
       email: "john@example.com",
       password: "password1$",
-      boards: [],
     },
     {
       _id: "649252e9a272d59f6402c801",
       username: "jane_smith",
       email: "jane@example.com",
       password: "password2#",
-      boards: [],
     },
   ]);
 
@@ -25,19 +23,16 @@ connection.once("open", async () => {
 
   await Board.insertMany([
     {
-      user: "649252e9a272d59f6402c800",
       title: "Board 1",
       description: "This is board 1",
       backgroundImage: "john_doe",
     },
     {
-      user: "649252e9a272d59f6402c800",
       title: "Board 2",
       description: "This is board 2",
       backgroundImage: "john_doe",
     },
     {
-      user: "649252e9a272d59f6402c800",
       title: "Board 3",
       description: "This is board 3",
       backgroundImage: "jane_smith",

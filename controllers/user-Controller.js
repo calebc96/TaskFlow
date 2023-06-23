@@ -18,7 +18,7 @@ const getUsers = (req, res) => {
 
 const getBoards = (req, res) => {
   Board.find()
-    .populate("Users") // Populate the boards field
+    .populate("user") // Populate the boards field
     .then(async (boards) => {
       return res.json(boards);
     })
