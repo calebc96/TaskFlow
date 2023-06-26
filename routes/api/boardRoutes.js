@@ -1,15 +1,14 @@
 const router = require("express").Router();
 const {
   getBoards,
-  createBoard,
   deleteBoard,
   getsingleBoard,
-} = require("../../controllers/user-Controller");
+} = require("../../controllers/userController");
 
 // import middleware
 const { authMiddleware } = require("../../utils/auth");
 
-router.route("/").post(createBoard).get(getBoards);
+router.route("/").get(getBoards);
 
 router
   .route("/:boardId")

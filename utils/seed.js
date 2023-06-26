@@ -28,6 +28,7 @@ connection.once("open", async () => {
       backgroundImage: "john_doe",
     },
     {
+      user: "649252e9a272d59f6402c800",
       title: "Board 2",
       description: "This is board 2",
       backgroundImage: "john_doe",
