@@ -50,6 +50,22 @@ const createTask = async (req, res) => {
     });
 };
 
+const updateTask = async (req, res) => {
+  try {
+    const task = await Task.findOneAndUpdate(
+      { _id: req.params.taskId },
+      req.body,
+      { new: true }
+    );
+    if (!task) {
+      return res.status(404).json({ message: "No task with this id!" });
+    }
+    return res.json({ message: "Task successfully updated!", task });
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+};
+
 const deleteTask = async (req, res) => {
   try {
     const task = await Task.findOneAndRemove({ _id: req.params.taskId });
@@ -79,4 +95,5 @@ module.exports = {
   getTasks,
   createTask,
   deleteTask,
+  updateTask,
 };
