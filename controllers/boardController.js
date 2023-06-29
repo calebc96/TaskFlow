@@ -52,22 +52,30 @@ const createBoard = async (req, res) => {
     });
 };
 
-// Remove a board from `savedBoards`
-const deleteBoard = async ({ req, res }) => {
-  Board.findOneand({ _id: req.params.boardId })
-    .select("-__v")
-    .then(async (board) =>
-      !board
-        ? res.status(404).json({ message: "No Board with that ID" })
-        : res.json({
-            board,
-          })
-    )
-    .catch((err) => {
-      console.log(err);
-      return res.status(500).json(err);
-    });
+const deleteBoard = async (req, res) => {
+  try {
+    const board = await Board.findOneAndRemove({ _id: req.params.boardId });
+    if (!board) {
+      return res.status(404).json({ message: "No board with this id!" });
+    }
+
+    const user = await User.findOneAndUpdate(
+      { boards: req.params.boardId },
+      { $pull: { boards: req.params.boardId } },
+      { new: true }
+    );
+    if (!user) {
+      return res.status(404).json({
+        message: "Board deleted, but no user with this id!",
+      });
+    }
+
+    return res.json({ message: "Board successfully deleted!" });
+  } catch (err) {
+    return res.status(500).json(err);
+  }
 };
+
 module.exports = {
   getsingleBoard,
   getBoards,
