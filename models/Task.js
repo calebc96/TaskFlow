@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 
 const taskSchema = new Schema({
-  board: {
+  board_id: {
     type: Schema.Types.ObjectId,
     ref: "board",
   },
@@ -25,10 +25,6 @@ const taskSchema = new Schema({
     type: String,
     enum: ["low", "medium", "high"],
     default: "medium",
-  },
-  createdBy: {
-    type: String,
-    required: true,
   },
 });
 

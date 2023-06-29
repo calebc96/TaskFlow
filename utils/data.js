@@ -16,4 +16,14 @@ const boards = [
   },
 ];
 
-module.exports = { users, boards };
+const tasks = [
+  {
+    title: "Finish project proposal",
+    description: "Write and finalize the project proposal document",
+    dueDate: "2023-06-05T00:00:00.000Z",
+    completed: false,
+    priority: "high",
+  },
+];
+
+module.exports = { users, boards, tasks };

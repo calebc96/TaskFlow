@@ -1,10 +1,13 @@
-// Create a task
-// router.route("/boards/:boardId/tasks").post(authMiddleware, createTask);
+const router = require("express").Router();
+const {
+  getTasks,
+  getsingleTask,
+  createTask,
+  deleteTask,
+} = require("../../controllers/taskController");
 
-// Delete a task
-// router
-//   .route("/boards/:boardId/tasks/:taskId")
-//   .delete(authMiddleware, deleteTask);
+router.route("/").get(getTasks).post(createTask);
 
-// Update a task
-// router.route("/boards/:boardId/tasks/:taskId").put(authMiddleware, updateTask);
+router.route("/:taskId").delete(deleteTask).get(getsingleTask);
+
+module.exports = router;

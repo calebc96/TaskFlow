@@ -2,7 +2,7 @@ const { User, Board } = require("../models");
 
 const getBoards = (req, res) => {
   Board.find()
-    // .populate("User") // Populate the boards field
+    .populate("tasks") // Populate the boards field
     .then(async (boards) => {
       return res.json(boards);
     })
