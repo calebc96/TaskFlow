@@ -19,6 +19,7 @@ const getUsers = (req, res) => {
 // Get a single User
 const getSingleUser = (req, res) => {
   User.findOne({ _id: req.params.userId })
+    .populate("boards")
     .select("-__v")
     .then(async (user) =>
       !user
@@ -69,9 +70,9 @@ const deleteUser = async (req, res) => {
     .then((user) =>
       !user
         ? res.status(404).json({ message: "No user with that ID" })
-        : Application.deleteMany({ _id: { $in: user.applications } })
+        : Board.deleteMany({ _id: { $in: user.boards } })
     )
-    .then(() => res.json({ message: "User and associated apps deleted!" }))
+    .then(() => res.json({ message: "User and associated boards deleted!" }))
     .catch((err) => res.status(500).json(err));
 };
 
