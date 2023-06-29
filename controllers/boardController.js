@@ -34,7 +34,7 @@ const createBoard = async (req, res) => {
   Board.create(req.body)
     .then((board) => {
       return User.findOneAndUpdate(
-        { _id: req.body.userId },
+        { _id: req.body.user_id },
         { $addToSet: { boards: board._id } },
         { new: true }
       );

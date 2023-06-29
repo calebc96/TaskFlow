@@ -3,10 +3,10 @@ const User = require("./User");
 
 // Board Schema
 const boardSchema = new Schema({
-  userId: {
+  user_id: {
     type: Schema.Types.ObjectId,
     ref: "User",
-    required: false,
+    required: true,
   },
   title: {
     type: String,

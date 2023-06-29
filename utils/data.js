@@ -1,19 +1,18 @@
 const users = [
   {
-    _id: "649c8ada3ed32d4276042d88",
+    _id: "649da5861a881a7e54509c29",
     username: "John Doe",
     email: "carnett.caleb@gmail.com",
     password: "password12%",
-    boards: "649c8ada3ed32d4276042d88",
+    boards: [],
   },
 ];
 
 const boards = [
   {
-    _id: "649c8ada3ed32d4276042d88",
+    user_id: "649da5861a881a7e54509c29",
     title: "Board 1",
     backgroundImage: "two",
-    user: "649c8ada3ed32d4276042d88",
   },
 ];
 
