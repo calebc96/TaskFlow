@@ -1,6 +1,8 @@
+const { User, Board } = require("../models");
+
 const getBoards = (req, res) => {
   Board.find()
-    .populate("user") // Populate the boards field
+    // .populate("User") // Populate the boards field
     .then(async (boards) => {
       return res.json(boards);
     })
@@ -51,20 +53,21 @@ const createBoard = async (req, res) => {
 };
 
 // Remove a board from `savedBoards`
-const deleteBoard = async ({ user, params }, res) => {
-  const updatedUser = await User.findOneAndUpdate(
-    { _id: user._id },
-    { $pull: { boards: { boardId: params.bookId } } },
-    { new: true }
-  );
-  if (!updatedUser) {
-    return res
-      .status(404)
-      .json({ message: "Couldn't find user with this id!" });
-  }
-  return res.json(updatedUser);
+const deleteBoard = async ({ req, res }) => {
+  Board.findOneand({ _id: req.params.boardId })
+    .select("-__v")
+    .then(async (board) =>
+      !board
+        ? res.status(404).json({ message: "No Board with that ID" })
+        : res.json({
+            board,
+          })
+    )
+    .catch((err) => {
+      console.log(err);
+      return res.status(500).json(err);
+    });
 };
-
 module.exports = {
   getsingleBoard,
   getBoards,

@@ -3,7 +3,7 @@ const { Schema, model } = require("mongoose");
 const taskSchema = new Schema({
   board: {
     type: Schema.Types.ObjectId,
-    ref: "Board",
+    ref: "board",
   },
   title: {
     type: String,

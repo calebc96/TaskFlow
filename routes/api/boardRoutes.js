@@ -3,16 +3,15 @@ const {
   getBoards,
   deleteBoard,
   getsingleBoard,
-} = require("../../controllers/userController");
+  createBoard,
+} = require("../../controllers/boardController");
+const { create } = require("../../models/User");
 
 // import middleware
 const { authMiddleware } = require("../../utils/auth");
 
-router.route("/").get(getBoards);
+router.route("/").get(getBoards).post(createBoard);
 
-router
-  .route("/:boardId")
-  .delete(authMiddleware, deleteBoard)
-  .get(getsingleBoard);
+router.route("/:boardId").delete(deleteBoard).get(getsingleBoard);
 
 module.exports = router;

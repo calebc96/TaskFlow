@@ -1,6 +1,8 @@
 // import user model
 const { User, Board } = require("../models");
 
+const { signToken } = require("../utils/auth");
+
 // Get all Users
 const getUsers = (req, res) => {
   User.find()
@@ -32,25 +34,14 @@ const getSingleUser = (req, res) => {
 };
 
 // Create a user, sign a token, and send it back (to client/src/components/SignUpForm.js)
-const createUser = async (req, res) => {
-  const { username, email, password } = req.body;
+const createUser = async ({ body }, res) => {
+  const user = await User.create(body);
 
-  try {
-    // Create a new user object
-    const newUser = new User({
-      username,
-      email,
-      password,
-    });
-
-    // Save the user to the database
-    const savedUser = await newUser.save();
-
-    res.status(201).json(savedUser);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Failed to create user" });
+  if (!user) {
+    return res.status(400).json({ message: "Something is wrong!" });
   }
+  const token = signToken(user);
+  res.json({ token, user });
 };
 
 // Login a user, sign a token, and send it back (to client/src/components/LoginForm.js)
@@ -59,6 +50,7 @@ const login = async ({ body }, res) => {
   const user = await User.findOne({
     $or: [{ username: body.username }, { email: body.email }],
   });
+
   if (!user) {
     return res.status(400).json({ message: "Can't find this user" });
   }
@@ -68,11 +60,25 @@ const login = async ({ body }, res) => {
   if (!correctPw) {
     return res.status(400).json({ message: "Wrong password!" });
   }
+  const token = signToken(user);
+  res.json({ token, user });
+};
+
+const deleteUser = async (req, res) => {
+  User.findOneAndDelete({ _id: req.params.userId })
+    .then((user) =>
+      !user
+        ? res.status(404).json({ message: "No user with that ID" })
+        : Application.deleteMany({ _id: { $in: user.applications } })
+    )
+    .then(() => res.json({ message: "User and associated apps deleted!" }))
+    .catch((err) => res.status(500).json(err));
 };
 
 module.exports = {
   getUsers,
   getSingleUser,
   createUser,
+  deleteUser,
   login,
 };
