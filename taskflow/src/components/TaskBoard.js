@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/TaskBoard.css";
-import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -22,11 +21,7 @@ export default function TaskBoard() {
         <Offcanvas.Header closeButton className="close-button">
           <Offcanvas.Title>Boards</Offcanvas.Title>
         </Offcanvas.Header>
-        <Offcanvas.Body>
-          {" "}
-          <p className="board-list">Newly created board</p>
-          <p className="board-list">Newly created board</p>
-        </Offcanvas.Body>
+        <Offcanvas.Body></Offcanvas.Body>
       </Offcanvas>
     </div>
   );
