@@ -14,14 +14,15 @@ export default function TaskBoard() {
   return (
     <div className="board-background">
       <div className="view-allboards" onClick={handleShow}>
-        <Created />
-        <FontAwesomeIcon icon="fa-solid fa-check-square" />
+        {/* <FontAwesomeIcon icon="fa-solid fa-check-square" /> */}
       </div>
       <Offcanvas className="off-canvas" show={show} onHide={handleClose}>
         <Offcanvas.Header closeButton className="close-button">
           <Offcanvas.Title>Boards</Offcanvas.Title>
         </Offcanvas.Header>
-        <Offcanvas.Body></Offcanvas.Body>
+        <Offcanvas.Body>
+          <Created />
+        </Offcanvas.Body>
       </Offcanvas>
     </div>
   );

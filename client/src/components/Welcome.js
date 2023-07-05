@@ -2,7 +2,7 @@ import React from "react";
 
 import "../styles/Header.css";
 
-import Create from "../components/CreateTask";
+import Create from "./CreateTask";
 import TaskBoard from "./TaskBoard";
 
 export default function Navigation() {

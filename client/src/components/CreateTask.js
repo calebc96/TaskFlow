@@ -62,7 +62,9 @@ export default function Create() {
 
         <label>Board Title</label>
         <input value={title} onChange={(e) => setTitle(e.target.value)}></input>
-        <label>Board title is required.</label>
+        <label>
+          <small>Board title is required.</small>
+        </label>
         <Modal.Footer>
           {/* <Button
             variant="success"
