@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "concurrently \"node server.js\" \"cd client && npm start\"",
+    "start": "concurrently \"cd server && node server.js\" \"cd client && npm start\"",
     "dev": "nodemon index",
     "seed": "node utils/seed"
   },
