@@ -18,6 +18,8 @@ router.route("/boards").post(createBoard);
 
 router.route("/:userId").get(getSingleUser).delete(deleteUser);
 
+router.route("/me").get(authMiddleware, getSingleUser).delete(deleteUser);
+
 router.route("/login").post(login);
 
 module.exports = router;
