@@ -1,11 +1,12 @@
 // see SignupForm.js for comments
 import React, { useState } from "react";
-import { Form, Button, Alert } from "react-bootstrap";
+import { Form, Button, Alert, Modal } from "react-bootstrap";
 
 import { loginUser } from "../utils/API";
+
 import Auth from "../utils/auth";
 
-const LoginForm = () => {
+export default function Login() {
   const [userFormData, setUserFormData] = useState({ email: "", password: "" });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
@@ -97,6 +98,4 @@ const LoginForm = () => {
       </Form>
     </>
   );
-};
-
-export default LoginForm;
+}

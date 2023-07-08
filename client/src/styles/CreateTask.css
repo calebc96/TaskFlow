@@ -93,7 +93,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     border: none;
-    cursor: grab;
+    cursor: pointer;
 }
 
 .board-images-two{
@@ -106,7 +106,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     border: none;
-    cursor: grab;
+    cursor: pointer;
 }
 .board-images-three{
     background-image: url("../images/Winter.jpg");
@@ -118,7 +118,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     border: none;
-    cursor: grab;
+    cursor: pointer;
 }
 .board-images-four{
     background-image: url("../images/Yosemite.jpg");
@@ -130,7 +130,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     border: none;
-    cursor: grab;
+    cursor: pointer;
 }
 .board-images-five{
     background-image: url("../images/beach.jpg");
@@ -142,7 +142,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     border: none;
-    cursor: grab;
+    cursor: pointer;
 }
 
 .image-selection {

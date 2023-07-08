@@ -31,7 +31,16 @@ color: #969696;
   justify-content: end;
 }
 
+.nav-user {
+  margin-left: auto;
+  margin-right: 30px;
+  color: rgb(46, 172, 231);
+  font-size: 22px;
+}
 
+.nav-user:hover {
+  cursor: pointer;
+}
 
 .navbar .container-fluid {
   display: flex;
@@ -63,6 +72,11 @@ color: #969696;
   .nav-header h1 {
     padding-left: 0;
     margin-right: 0;
+  }
+  .nav-user {
+    position: absolute;
+    top: 0px;
+    right: -25px;
   }
   
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../styles/TaskBoard.css";
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { BiArrowToRight, BiFontSize } from "react-icons/bi";
 import Created from "./CreatedTask";
 
 export default function TaskBoard() {
@@ -14,7 +14,10 @@ export default function TaskBoard() {
   return (
     <div className="board-background">
       <div className="view-allboards" onClick={handleShow}>
-        {/* <FontAwesomeIcon icon="fa-solid fa-check-square" /> */}
+        <BiArrowToRight
+          style={{ fontSize: "20px", color: "grey" }}
+          href="/Login"
+        />
       </div>
       <Offcanvas className="off-canvas" show={show} onHide={handleClose}>
         <Offcanvas.Header closeButton className="close-button">

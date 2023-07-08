@@ -66,13 +66,13 @@ export default function Create() {
           <small>Board title is required.</small>
         </label>
         <Modal.Footer>
-          {/* <Button
+          <Button
             variant="success"
             className="createboard-button"
-            onClick={handleCreateBoard}
+            // onClick={handleCreateBoard}
           >
             Create
-          </Button> */}
+          </Button>
         </Modal.Footer>
       </Modal>
     </div>
