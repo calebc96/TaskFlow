@@ -3,7 +3,7 @@ import "../styles/TaskBoard.css";
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { BiArrowToRight, BiFontSize } from "react-icons/bi";
-import Created from "./CreatedTask";
+import Created from "../components/CreatedTask";
 
 export default function TaskBoard() {
   const [show, setShow] = useState(false);

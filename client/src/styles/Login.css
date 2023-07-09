@@ -1,0 +1,34 @@
+.form-page {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(65, 65, 65);
+}
+
+.form-group {
+    width: 40vw;
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;  
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.login-button {
+    margin: 10px;
+}
+
+.alert {
+    width: 40vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media screen and (max-width: 768px) {
+    .form-group {
+        width: 90vw;
+    }
+}
+    
