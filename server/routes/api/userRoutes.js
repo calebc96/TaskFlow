@@ -5,6 +5,7 @@ const {
   getSingleUser,
   login,
   deleteUser,
+  getMe,
 } = require("../../controllers/userController");
 
 const { createBoard } = require("../../controllers/boardController");
@@ -16,9 +17,9 @@ router.route("/").get(getUsers).post(createUser);
 
 router.route("/boards").post(createBoard);
 
-router.route("/:userId").get(getSingleUser).delete(deleteUser);
+router.route("/:userId").get(authMiddleware, getSingleUser).delete(deleteUser);
 
-router.route("/me").get(authMiddleware, getSingleUser).delete(deleteUser);
+router.route("/me").get(authMiddleware, getMe).delete(deleteUser);
 
 router.route("/login").post(login);
 

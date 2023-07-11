@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../styles/CreateTask.css";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import Auth from "../utils/auth";
 
 export default function Create() {
   const [show, setShow] = useState(false);
@@ -38,9 +39,15 @@ export default function Create() {
   ];
   return (
     <div className="create-board">
-      <Button variant="success" onClick={handleShow}>
-        Create Board
-      </Button>
+      {Auth.loggedIn() ? (
+        <Button variant="success" onClick={handleShow}>
+          Create Board
+        </Button>
+      ) : (
+        <Button variant="success" to="/login">
+          Create Board
+        </Button>
+      )}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Create Board</Modal.Title>

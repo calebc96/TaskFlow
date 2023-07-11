@@ -3,6 +3,19 @@ const { User, Board } = require("../models");
 
 const { signToken } = require("../utils/auth");
 
+//finding the user based on the token
+const getMe = (req, res) => {
+  User.findOne({ token: req.token })
+    .populate("boards") // Populate the boards field
+    .then(async (users) => {
+      return res.json(users);
+    })
+    .catch((err) => {
+      console.log(err);
+      return res.status(500).json(err);
+    });
+};
+
 // Get all Users
 const getUsers = (req, res) => {
   User.find()
@@ -77,6 +90,7 @@ const deleteUser = async (req, res) => {
 };
 
 module.exports = {
+  getMe,
   getUsers,
   getSingleUser,
   createUser,

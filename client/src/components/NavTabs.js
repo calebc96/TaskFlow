@@ -4,20 +4,33 @@ import { BiSolidUserCircle } from "react-icons/bi";
 import Create from "./CreateTask";
 import TaskBoard from "../pages/TaskBoard";
 import { Link } from "react-router-dom";
+import Auth from "../utils/auth";
 
 export default function Navigation() {
   return (
     <>
       <div className="nav-header">
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <h1>TaskFlow</h1>
-        </Link>
+        {Auth.loggedIn() ? (
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <h1>TaskFlow</h1>
+          </Link>
+        ) : (
+          <Link to="/login" style={{ textDecoration: "none" }}>
+            <h1>TaskFlow</h1>
+          </Link>
+        )}
+
         <Create />
         <div className="nav-user">
-          <Link to="/login">
-            {" "}
-            <BiSolidUserCircle />
-          </Link>
+          {Auth.loggedIn() ? (
+            <Link to="/user-information">
+              <BiSolidUserCircle />
+            </Link>
+          ) : (
+            <Link to="/login">
+              <BiSolidUserCircle />
+            </Link>
+          )}
         </div>
       </div>
     </>

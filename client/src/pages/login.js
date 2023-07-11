@@ -1,11 +1,9 @@
-// see SignupForm.js for comments
 import React, { useState } from "react";
-import { Form, Button, Alert, Modal } from "react-bootstrap";
-import "../styles/Login.css";
-import { loginUser } from "../utils/API";
+import { Form, Button, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
+import { loginUser } from "../utils/API";
 import Auth from "../utils/auth";
+import "../styles/Login.css";
 
 export default function Login() {
   const [userFormData, setUserFormData] = useState({ email: "", password: "" });
@@ -43,10 +41,24 @@ export default function Login() {
     }
 
     setUserFormData({
-      username: "",
       email: "",
       password: "",
     });
+  };
+  const loginUser = async (userData) => {
+    try {
+      const response = await fetch("/api/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      });
+
+      return response;
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
@@ -106,7 +118,7 @@ export default function Login() {
           </Button>
           <br />
           <small>
-            Dont have an account? <Link to="/signup">Signup Here</Link>{" "}
+            Don't have an account? <Link to="/signup">Signup Here</Link>{" "}
           </small>
         </div>
       </Form>

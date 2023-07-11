@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import TaskBoard from "./pages/TaskBoard";
 import Signup from "./pages/Signup";
+import UserInformation from "./pages/UserInformation";
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/" element={<TaskBoard />} />
+          <Route path="/" element={<TaskBoard />} />\
+          <Route path="/user-information" element={<UserInformation />} />
         </Routes>
       </>
     </Router>

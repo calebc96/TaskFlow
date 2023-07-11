@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { createUser } from "../utils/API";
 import Auth from "../utils/auth";
+import "../styles/Login.css";
 
 const SignupForm = () => {
   // set initial form state
@@ -42,8 +42,8 @@ const SignupForm = () => {
       console.log(user);
       Auth.login(token);
     } catch (err) {
-      console.error(err);
       setShowAlert(true);
+      console.error(err);
     }
 
     setUserFormData({
@@ -51,6 +51,22 @@ const SignupForm = () => {
       email: "",
       password: "",
     });
+  };
+
+  const createUser = async (userData) => {
+    try {
+      const response = await fetch("/api/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      });
+
+      return response;
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
