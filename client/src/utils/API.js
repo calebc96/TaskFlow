@@ -1,10 +1,9 @@
 // route to get logged in user's info (needs the token)
-export const getMe = async (userData, token) => {
+export const getMe = async (userData) => {
   try {
     const response = await fetch("/api/users/me", {
       headers: {
         "Content-Type": "application/json",
-        authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(userData),
     });
@@ -32,3 +31,24 @@ export const loginUser = (userData) => {
     body: JSON.stringify(userData),
   });
 };
+
+export const findMe = (userData) => {
+  const token = localStorage.getItem("token");
+  return fetch("/api/users/me", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(userData),
+  });
+};
+
+// export const getBoards = () => {
+//   return fetch(`/api/boards/${}`, {
+//     method: "GET",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(loginUser),
+//   });
+// };

@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/Header.css";
 import { BiSolidUserCircle } from "react-icons/bi";
-import Create from "./CreateTask";
+import Create from "./Board";
 import TaskBoard from "../pages/TaskBoard";
 import { Link } from "react-router-dom";
 import Auth from "../utils/auth";

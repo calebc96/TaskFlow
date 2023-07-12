@@ -17,9 +17,9 @@ router.route("/").get(getUsers).post(createUser);
 
 router.route("/boards").post(createBoard);
 
-router.route("/:userId").get(authMiddleware, getSingleUser).delete(deleteUser);
+router.route("/:userId").get(getSingleUser).delete(deleteUser);
 
-router.route("/me").get(authMiddleware, getMe).delete(deleteUser);
+router.route("/me").get(authMiddleware, getMe);
 
 router.route("/login").post(login);
 

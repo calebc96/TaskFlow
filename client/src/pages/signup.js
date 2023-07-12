@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Auth from "../utils/auth";
+import { createUser } from "../utils/API";
 import "../styles/Login.css";
 
-const SignupForm = () => {
+export default function SignupForm() {
   // set initial form state
   const [userFormData, setUserFormData] = useState({
     username: "",
@@ -51,22 +52,6 @@ const SignupForm = () => {
       email: "",
       password: "",
     });
-  };
-
-  const createUser = async (userData) => {
-    try {
-      const response = await fetch("/api/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-      });
-
-      return response;
-    } catch (err) {
-      console.error(err);
-    }
   };
 
   return (
@@ -156,6 +141,4 @@ const SignupForm = () => {
       </Form>
     </>
   );
-};
-
-export default SignupForm;
+}

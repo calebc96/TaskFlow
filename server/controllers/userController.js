@@ -3,17 +3,27 @@ const { User, Board } = require("../models");
 
 const { signToken } = require("../utils/auth");
 
-//finding the user based on the token
-const getMe = (req, res) => {
-  User.findOne({ token: req.token })
-    .populate("boards") // Populate the boards field
-    .then(async (users) => {
-      return res.json(users);
-    })
-    .catch((err) => {
-      console.log(err);
-      return res.status(500).json(err);
-    });
+const getMe = async (req, res) => {
+  try {
+    const userId = req.user._id; // user ID is stored in req.user.id from the auth middleware
+    // Assuming you have a User model defined and you want to find the user by their ID
+    const user = await User.findOne({ _id: userId })
+      .populate("boards")
+      .then(async (users) => {
+        return res.json(users);
+      });
+
+    // Checking if the user exists
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // Returning the user details
+    return res.json(user);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Server error" });
+  }
 };
 
 // Get all Users

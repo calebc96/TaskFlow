@@ -66,6 +66,14 @@
  transition: .5s;
 }
 
+.main-view {
+    display: flex;
+}
+
+.created-tasks {
+    margin-left: 25px;
+}
+
 .view-allboards:hover {
     cursor: pointer;
     background-color: #2f2f2f;

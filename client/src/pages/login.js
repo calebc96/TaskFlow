@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 import { loginUser } from "../utils/API";
 import Auth from "../utils/auth";
 import "../styles/Login.css";
+import UserContext from "./UserContext";
 
-export default function Login() {
+export default function UserLogin() {
   const [userFormData, setUserFormData] = useState({ email: "", password: "" });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
@@ -27,14 +28,14 @@ export default function Login() {
 
     try {
       const response = await loginUser(userFormData);
-
       if (!response.ok) {
         throw new Error("something went wrong!");
       }
 
       const { token, user } = await response.json();
-      console.log(user);
-      Auth.login(token);
+      console.log(user, token);
+      const tokens = Auth.login(token);
+      console.log(tokens);
     } catch (err) {
       console.error(err);
       setShowAlert(true);
@@ -44,21 +45,6 @@ export default function Login() {
       email: "",
       password: "",
     });
-  };
-  const loginUser = async (userData) => {
-    try {
-      const response = await fetch("/api/users/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-      });
-
-      return response;
-    } catch (err) {
-      console.error(err);
-    }
   };
 
   return (
