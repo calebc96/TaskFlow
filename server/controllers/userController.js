@@ -1,28 +1,22 @@
 // import user model
 const { User, Board } = require("../models");
 
-const { signToken } = require("../utils/auth");
+// Get all Users
+const getMe = (req, res) => {
+  const token = req.headers.authorization;
 
-const getMe = async (req, res) => {
+  if (!token) {
+    return res.status(401).json({ message: "Authorization token missing" });
+  }
+
   try {
-    const userId = req.user._id; // user ID is stored in req.user.id from the auth middleware
-    // Assuming you have a User model defined and you want to find the user by their ID
-    const user = await User.findOne({ _id: userId })
-      .populate("boards")
-      .then(async (users) => {
-        return res.json(users);
-      });
-
-    // Checking if the user exists
-    if (!user) {
-      return res.status(404).json({ error: "User not found" });
-    }
-
-    // Returning the user details
-    return res.json(user);
+    const decoded = jwt.verify(token, secret);
+    const { data } = decoded;
+    // Here, you can access the user data from `data` and perform any necessary actions
+    res.json({ user: data });
   } catch (error) {
-    console.error(error);
-    return res.status(500).json({ error: "Server error" });
+    console.log(error);
+    return res.status(401).json({ message: "Invalid token" });
   }
 };
 
@@ -40,22 +34,22 @@ const getUsers = (req, res) => {
 };
 
 // Get a single User
-const getSingleUser = (req, res) => {
-  User.findOne({ _id: req.params.userId })
-    .populate("boards")
-    .select("-__v")
-    .then(async (user) =>
-      !user
-        ? res.status(404).json({ message: "No User with that ID" })
-        : res.json({
-            user,
-          })
-    )
-    .catch((err) => {
-      console.log(err);
-      return res.status(500).json(err);
-    });
-};
+// const getSingleUser = (req, res) => {
+//   User.findOne({ _id: req.params.userId })
+//     .populate("boards")
+//     .select("-__v")
+//     .then(async (user) =>
+//       !user
+//         ? res.status(404).json({ message: "No User with that ID" })
+//         : res.json({
+//             user,
+//           })
+//     )
+//     .catch((err) => {
+//       console.log(err);
+//       return res.status(500).json(err);
+//     });
+// };
 
 // Create a user, sign a token, and send it back (to client/src/components/SignUpForm.js)
 const createUser = async ({ body }, res) => {
@@ -68,8 +62,6 @@ const createUser = async ({ body }, res) => {
   res.json({ token, user });
 };
 
-// Login a user, sign a token, and send it back (to client/src/components/LoginForm.js)
-// { body } is destructured req.body
 const login = async ({ body }, res) => {
   const user = await User.findOne({
     $or: [{ username: body.username }, { email: body.email }],
@@ -84,8 +76,14 @@ const login = async ({ body }, res) => {
   if (!correctPw) {
     return res.status(400).json({ message: "Wrong password!" });
   }
-  const token = signToken(user);
-  res.json({ token, user });
+
+  req.session.save(() => {
+    req.session.userId = user.id;
+    req.session.username = user.username;
+    req.session.loggedIn = true;
+
+    res.json({ user, message: "You are now logged in!" });
+  });
 };
 
 const deleteUser = async (req, res) => {
@@ -102,7 +100,7 @@ const deleteUser = async (req, res) => {
 module.exports = {
   getMe,
   getUsers,
-  getSingleUser,
+  // getSingleUser,
   createUser,
   deleteUser,
   login,
