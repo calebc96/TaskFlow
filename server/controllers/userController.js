@@ -1,68 +1,49 @@
-// import user model
 const { User, Board } = require("../models");
 
-// Get all Users
 const getMe = (req, res) => {
-  const token = req.headers.authorization;
-
-  if (!token) {
-    return res.status(401).json({ message: "Authorization token missing" });
+  if (!req.session.userId) {
+    return res.status(401).json({ message: "Not authenticated" });
   }
 
-  try {
-    const decoded = jwt.verify(token, secret);
-    const { data } = decoded;
-    // Here, you can access the user data from `data` and perform any necessary actions
-    res.json({ user: data });
-  } catch (error) {
-    console.log(error);
-    return res.status(401).json({ message: "Invalid token" });
-  }
-};
+  // You can access the logged-in user's ID from req.session.userId
+  User.findById(req.session.userId)
+    .populate("boards")
+    .then((user) => {
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
 
-// Get all Users
-const getUsers = (req, res) => {
-  User.find()
-    .populate("boards") // Populate the boards field
-    .then(async (users) => {
-      return res.json(users);
+      res.json({ user });
     })
     .catch((err) => {
       console.log(err);
-      return res.status(500).json(err);
+      res.status(500).json({ message: "Internal server error" });
     });
 };
 
-// Get a single User
-// const getSingleUser = (req, res) => {
-//   User.findOne({ _id: req.params.userId })
-//     .populate("boards")
-//     .select("-__v")
-//     .then(async (user) =>
-//       !user
-//         ? res.status(404).json({ message: "No User with that ID" })
-//         : res.json({
-//             user,
-//           })
-//     )
-//     .catch((err) => {
-//       console.log(err);
-//       return res.status(500).json(err);
-//     });
-// };
+const getUsers = (req, res) => {
+  User.find()
+    .populate("boards")
+    .then((users) => {
+      res.json(users);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+};
 
-// Create a user, sign a token, and send it back (to client/src/components/SignUpForm.js)
 const createUser = async ({ body }, res) => {
   const user = await User.create(body);
 
   if (!user) {
-    return res.status(400).json({ message: "Something is wrong!" });
+    return res.status(400).json({ message: "Something went wrong" });
   }
-  const token = signToken(user);
-  res.json({ token, user });
+
+  res.json({ user });
 };
 
-const login = async ({ body }, res) => {
+const login = async ({ body, session }, res) => {
   const user = await User.findOne({
     $or: [{ username: body.username }, { email: body.email }],
   });
@@ -77,22 +58,28 @@ const login = async ({ body }, res) => {
     return res.status(400).json({ message: "Wrong password!" });
   }
 
-  req.session.save(() => {
-    req.session.userId = user.id;
-    req.session.username = user.username;
-    req.session.loggedIn = true;
+  session.userId = user.id;
+  session.username = user.username;
+  session.loggedIn = true;
 
-    res.json({ user, message: "You are now logged in!" });
-  });
+  res.json({ user, message: "You are now logged in!" });
 };
 
 const deleteUser = async (req, res) => {
-  User.findOneAndDelete({ _id: req.params.userId })
-    .then((user) =>
-      !user
-        ? res.status(404).json({ message: "No user with that ID" })
-        : Board.deleteMany({ _id: { $in: user.boards } })
-    )
+  const userId = req.session.userId;
+
+  if (!userId) {
+    return res.status(401).json({ message: "Not authenticated" });
+  }
+
+  User.findByIdAndDelete(userId)
+    .then((user) => {
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+
+      return Board.deleteMany({ _id: { $in: user.boards } });
+    })
     .then(() => res.json({ message: "User and associated boards deleted!" }))
     .catch((err) => res.status(500).json(err));
 };
@@ -100,7 +87,6 @@ const deleteUser = async (req, res) => {
 module.exports = {
   getMe,
   getUsers,
-  // getSingleUser,
   createUser,
   deleteUser,
   login,

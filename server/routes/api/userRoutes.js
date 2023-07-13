@@ -1,6 +1,6 @@
 const router = require("express").Router();
 // import middleware
-const { authMiddleware } = require("../../utils/auth.js");
+const { withAuth } = require("../../utils/auth");
 const {
   getUsers,
   createUser,
@@ -18,7 +18,7 @@ router.route("/boards").post(createBoard);
 
 // router.route("/:userId").get(getSingleUser).delete(deleteUser);
 
-router.route("/me").get(authMiddleware, getMe);
+router.route("/me").get(getMe);
 
 router.route("/login").post(login);
 

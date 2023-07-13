@@ -1,13 +1,23 @@
 const express = require("express");
 const db = require("./config/connection");
 const routes = require("./routes");
-const bodyParser = require("body-parser");
+const session = require("express-session");
 
 const PORT = 3001;
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+// Configure express-session middleware
+app.use(
+  session({
+    secret: "mysecretsessionkey",
+    resave: false,
+    saveUninitialized: true,
+    // Add any other session configuration options you need
+  })
+);
+
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 app.use(routes);
 
