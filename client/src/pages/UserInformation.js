@@ -20,12 +20,10 @@ const UserInformation = () => {
   const loadUserData = async () => {
     try {
       const response = await getMe();
-      if (!response.ok) {
-        throw new Error("something went wrong!");
-      }
+
       const user = await response.json();
       console.log(user);
-      setUserData({ username: user[1].username, email: user[1].email });
+      setUserData({ username: user.username, email: user.email });
     } catch (err) {
       console.error(err);
     }
@@ -66,8 +64,9 @@ const UserInformation = () => {
 
   const handleLogout = () => {
     sessionStorage.removeItem("session");
-    // setLoggedIn(false);
+    window.location.replace("/login");
   };
+
   return (
     <>
       <Alert

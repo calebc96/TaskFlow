@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { createUser } from "../utils/API";
+import { loginUser } from "../utils/API";
 import "../styles/Login.css";
 
 export default function SignupForm() {
@@ -15,6 +16,7 @@ export default function SignupForm() {
   const [validated] = useState(false);
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
+  const [showGoodAlert, setShowGoodAlert] = useState(false);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -33,13 +35,13 @@ export default function SignupForm() {
 
     try {
       const response = await createUser(userFormData);
-
       if (!response.ok) {
         throw new Error("something went wrong!");
       }
 
       const { user } = await response.json();
-      console.log(user);
+
+      setShowGoodAlert(true);
     } catch (err) {
       setShowAlert(true);
       console.error(err);
@@ -70,6 +72,15 @@ export default function SignupForm() {
           className="alert"
         >
           Something went wrong with your signup!
+        </Alert>
+        <Alert
+          dismissible
+          onClose={() => setShowGoodAlert(false)}
+          show={showGoodAlert}
+          variant="success"
+          className="success-alert"
+        >
+          You've successfully signed up!
         </Alert>
         <div className="form-group">
           <Form.Group>

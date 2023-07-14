@@ -23,8 +23,8 @@ export default function UserLogin() {
       }
 
       // Set session in sessionStorage
-      sessionStorage.setItem("session", "true");
-
+      sessionStorage.setItem("session", true);
+      window.location.replace("/");
       const { user } = await response.json();
       console.log(user);
     } catch (err) {

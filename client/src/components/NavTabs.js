@@ -2,12 +2,11 @@ import React from "react";
 import "../styles/Header.css";
 import { BiSolidUserCircle } from "react-icons/bi";
 import Create from "./Board";
-import TaskBoard from "../pages/TaskBoard";
 import { Link } from "react-router-dom";
 
 export default function Navigation() {
   const session = sessionStorage.getItem("session");
-
+  console.log(session);
   return (
     <>
       <div className="nav-header">
