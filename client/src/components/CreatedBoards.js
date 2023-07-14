@@ -1,32 +1,37 @@
-// import React, { useEffect, useState } from "react";
-// import "../styles/CreatedBoard.css";
-// // import { getBoards } from "../utils/API";
+import React, { useEffect, useState } from "react";
+import "../styles/CreatedBoard.css";
+import { findMe } from "../utils/API";
 
-// export default function Created() {
-//   const [loggedInUser, setLoggedInUser] = useState(null);
+export default function Boards() {
+  const [boards, setBoards] = useState([]);
 
-//   useEffect(() => {
-//     const login = async () => {
-//       try {
-//         // const response = await getBoards();
-//         if (!response.ok) {
-//           throw new Error("Failed to fetch user data");
-//         }
-//         const { user } = await response.json();
-//         setLoggedInUser(user);
-//       } catch (error) {
-//         console.error(error);
-//       }
-//     };
+  useEffect(() => {
+    loadUserData();
+  }, []);
 
-//     login();
-//   }, []);
+  const loadUserData = async () => {
+    try {
+      //fetches the loggedin user's data
+      const response = await findMe();
+      //parses the response body to json
+      const user = await response.json();
+      console.log(user);
+      //sets the state of the user's data
+      setBoards(user.user.boards);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-//   return (
-//     <div style={{ color: "white" }}>
-//       <h2>User Details</h2>
-//       <p>Name: {loggedInUser}</p>
-//       {/* Render additional user data */}
-//     </div>
-//   );
-// }
+  return (
+    <div className="col-md-8">
+      <ul>
+        {boards.map((board) => (
+          <li className="board-list" key={board._id}>
+            {board.title}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}

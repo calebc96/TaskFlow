@@ -3,7 +3,7 @@ import "../styles/TaskBoard.css";
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { BiArrowToRight, BiFontSize } from "react-icons/bi";
-import Created from "../components/CreatedBoards";
+import CreatedBoards from "../components/CreatedBoards";
 import Tasks from "../components/CreatedTasks";
 
 export default function TaskBoard() {
@@ -25,13 +25,12 @@ export default function TaskBoard() {
           <Tasks />
         </div>
       </div>
-
       <Offcanvas className="off-canvas" show={show} onHide={handleClose}>
         <Offcanvas.Header closeButton className="close-button">
           <Offcanvas.Title>Boards</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <Created />
+          <CreatedBoards />
         </Offcanvas.Body>
       </Offcanvas>
     </div>
