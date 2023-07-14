@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { getMe } from "../utils/API";
-import Auth from "../utils/auth";
 import "../styles/Login.css";
 
 const UserInformation = () => {
@@ -20,8 +19,7 @@ const UserInformation = () => {
 
   const loadUserData = async () => {
     try {
-      const token = Auth.getToken();
-      const response = await getMe(token);
+      const response = await getMe();
       if (!response.ok) {
         throw new Error("something went wrong!");
       }
@@ -67,9 +65,9 @@ const UserInformation = () => {
   //   };
 
   const handleLogout = () => {
-    Auth.logout();
+    sessionStorage.removeItem("session");
+    // setLoggedIn(false);
   };
-
   return (
     <>
       <Alert

@@ -23,10 +23,12 @@ export const createUser = (userData) => {
 };
 
 export const loginUser = (userData) => {
+  const session = sessionStorage.getItem("session");
   return fetch("/api/users/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Session: session,
     },
     body: JSON.stringify(userData),
   });

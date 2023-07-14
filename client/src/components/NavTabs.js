@@ -4,13 +4,14 @@ import { BiSolidUserCircle } from "react-icons/bi";
 import Create from "./Board";
 import TaskBoard from "../pages/TaskBoard";
 import { Link } from "react-router-dom";
-import Auth from "../utils/auth";
 
 export default function Navigation() {
+  const session = sessionStorage.getItem("session");
+
   return (
     <>
       <div className="nav-header">
-        {Auth.loggedIn() ? (
+        {session ? (
           <Link to="/" style={{ textDecoration: "none" }}>
             <h1>TaskFlow</h1>
           </Link>
@@ -22,7 +23,7 @@ export default function Navigation() {
 
         <Create />
         <div className="nav-user">
-          {Auth.loggedIn() ? (
+          {session ? (
             <Link to="/user-information">
               <BiSolidUserCircle />
             </Link>

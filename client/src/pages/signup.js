@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Auth from "../utils/auth";
 import { createUser } from "../utils/API";
 import "../styles/Login.css";
 
@@ -39,9 +38,8 @@ export default function SignupForm() {
         throw new Error("something went wrong!");
       }
 
-      const { token, user } = await response.json();
+      const { user } = await response.json();
       console.log(user);
-      Auth.login(token);
     } catch (err) {
       setShowAlert(true);
       console.error(err);

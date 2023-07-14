@@ -2,13 +2,10 @@ import React, { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { loginUser } from "../utils/API";
-import Auth from "../utils/auth";
 import "../styles/Login.css";
-import UserContext from "./UserContext";
 
 export default function UserLogin() {
   const [userFormData, setUserFormData] = useState({ email: "", password: "" });
-  const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
   const handleInputChange = (event) => {
@@ -19,42 +16,28 @@ export default function UserLogin() {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    // check if form has everything (as per react-bootstrap docs)
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-
     try {
       const response = await loginUser(userFormData);
       if (!response.ok) {
-        throw new Error("something went wrong!");
+        throw new Error("Something went wrong!");
       }
 
-      const { token, user } = await response.json();
-      console.log(user, token);
-      const tokens = Auth.login(token);
-      console.log(tokens);
+      // Set session in sessionStorage
+      sessionStorage.setItem("session", "true");
+
+      const { user } = await response.json();
+      console.log(user);
     } catch (err) {
       console.error(err);
       setShowAlert(true);
     }
 
-    setUserFormData({
-      email: "",
-      password: "",
-    });
+    setUserFormData({ email: "", password: "" });
   };
 
   return (
     <>
-      <Form
-        noValidate
-        validated={validated}
-        onSubmit={handleFormSubmit}
-        className="form-page"
-      >
+      <Form onSubmit={handleFormSubmit} className="form-page">
         <Alert
           dismissible
           onClose={() => setShowAlert(false)}
