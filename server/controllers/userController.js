@@ -7,7 +7,12 @@ const getMe = (req, res) => {
 
   // You can access the logged-in user's ID from req.session.userId
   User.findById(req.session.userId)
-    .populate("boards")
+    .populate({
+      path: "boards",
+      populate: {
+        path: "tasks",
+      },
+    })
     .then((user) => {
       if (!user) {
         return res.status(404).json({ message: "User not found" });
