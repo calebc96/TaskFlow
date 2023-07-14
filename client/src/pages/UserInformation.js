@@ -63,7 +63,7 @@ const UserInformation = () => {
   //   };
 
   const handleLogout = () => {
-    sessionStorage.removeItem("session");
+    sessionStorage.setItem("session", false);
     window.location.replace("/login");
   };
 
