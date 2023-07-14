@@ -23,7 +23,7 @@ export default function Tasks() {
         {tasks.map((task) => (
           <li className="task-border" key={task._id}>
             <p>{task.title}</p>
-            <p>{task.description}</p>
+            {/* <p>{task.description}</p> */}
           </li>
         ))}
       </ul>

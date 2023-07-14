@@ -24,6 +24,7 @@ export default function TaskBoard() {
         <div className="created-tasks">
           <Tasks />
         </div>
+        <button className="created-taskbutton">+ Add Another Task</button>
       </div>
       <Offcanvas className="off-canvas" show={show} onHide={handleClose}>
         <Offcanvas.Header closeButton className="close-button">

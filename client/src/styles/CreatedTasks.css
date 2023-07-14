@@ -1,11 +1,15 @@
 .task-border{
     background-color: rgb(0, 0, 0);
     opacity: 90%;
+    font-size: 14px;
     font-weight: 500;
     width: 200px;
-    height: 200px;
+    height: 60px;
     border-radius: 15px;
-    color: white;
+    color: rgb(195, 195, 195);
+    padding-top: 10px;
+    padding-left: 5px;
+    text-align: left;
     margin: 10px;
     list-style-type: none;
 }
