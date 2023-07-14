@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/Header.css";
 import { BiSolidUserCircle } from "react-icons/bi";
-import Create from "./Board";
+import Create from "./CreateBoard";
 import { Link } from "react-router-dom";
 
 export default function Navigation() {

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../styles/CreateTask.css";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import { createBoard, findMe } from "../utils/API";
 
 export default function Create() {
   const [show, setShow] = useState(false);
@@ -36,6 +37,33 @@ export default function Create() {
       value: 5,
     },
   ];
+  const handleCreateBoard = async () => {
+    try {
+      const response = await findMe();
+      const user = await response.json();
+      const userId = user.user._id;
+
+      // Check if userId exists
+      if (!userId) {
+        // Handle the case where userId is not available
+        console.log("User ID not found in session");
+        return;
+      }
+
+      await createBoard({
+        title: title,
+        backgroundImage: selectedImage,
+        user_id: userId,
+      });
+
+      // Board creation success logic here
+      handleClose();
+    } catch (error) {
+      // Board creation error handling here
+      console.log(error);
+    }
+  };
+
   return (
     <div className="create-board">
       <Button variant="success" onClick={handleShow}>
@@ -74,7 +102,7 @@ export default function Create() {
           <Button
             variant="success"
             className="createboard-button"
-            // onClick={handleCreateBoard}
+            onClick={handleCreateBoard}
           >
             Create
           </Button>
@@ -83,27 +111,3 @@ export default function Create() {
     </div>
   );
 }
-
-// const handleCreateBoard = async () => {
-//   try {
-//     const response = await fetch("/boards", {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify({
-//         title,
-//         description,
-//         backgroundImage: selectedImage,
-//       }),
-//     });
-
-//     if (response.ok) {
-//       // Board created successfully
-//       handleClose();
-//     } else {
-//       // Handle error case
-//       console.error("Failed to create board:", response.statusText);
-//     }
-//   } catch (error) {
-//     console.error("Failed to create board:", error);
-//   }
-// };

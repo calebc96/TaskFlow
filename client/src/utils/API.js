@@ -54,6 +54,16 @@ export const findMe = (userData) => {
   });
 };
 
+export const createBoard = (boardData) => {
+  return fetch("/api/boards", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(boardData),
+  });
+};
+
 // export const getBoards = () => {
 //   return fetch(`/api/boards/${}`, {
 //     method: "GET",
