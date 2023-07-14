@@ -35,11 +35,10 @@ export const loginUser = (userData) => {
 };
 
 export const findMe = (userData) => {
-  const token = localStorage.getItem("token");
   return fetch("/api/users/me", {
-    method: "POST",
+    method: "GET",
     headers: {
-      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(userData),
   });

@@ -1,29 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
-import { getMe } from "../utils/API";
+import { findMe } from "../utils/API";
 import "../styles/Login.css";
 
 const UserInformation = () => {
+  //useState hook to set the state of the user's data
   const [userData, setUserData] = useState({
     username: "",
     email: "",
     password: "",
   });
+  //useState hook to set the state of the form validation
   const [validated, setValidated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
-
+  //useEffect hook to load the user's data when the page loads
   useEffect(() => {
     loadUserData();
   }, []);
 
   const loadUserData = async () => {
     try {
-      const response = await getMe();
-
+      //fetches the loggedin user's data
+      const response = await findMe();
+      //parses the response body to json
       const user = await response.json();
-      console.log(user);
-      setUserData({ username: user.username, email: user.email });
+      //sets the state of the user's data
+      setUserData({ username: user.user.username, email: user.user.email });
     } catch (err) {
       console.error(err);
     }
