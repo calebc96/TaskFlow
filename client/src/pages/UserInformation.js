@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
-import { findMe } from "../utils/API";
+import { findMe, updateUser } from "../utils/API";
 import "../styles/Login.css";
 
 const UserInformation = () => {
@@ -37,33 +37,33 @@ const UserInformation = () => {
     setUserData({ ...userData, [name]: value });
   };
 
-  //   const handleFormSubmit = async (event) => {
-  //     event.preventDefault();
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
 
-  //     const form = event.currentTarget;
-  //     if (form.checkValidity() === false) {
-  //       event.preventDefault();
-  //       event.stopPropagation();
-  //     }
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
 
-  //     try {
-  //       const response = await updateUser(userData);
-  //       if (!response.ok) {
-  //         throw new Error("something went wrong!");
-  //       }
-  //       setSuccessMessage("Password updated successfully!");
-  //       setShowAlert(true);
-  //     } catch (err) {
-  //       console.error(err);
-  //       setShowAlert(true);
-  //     }
+    try {
+      const response = await updateUser(userData);
+      if (!response.ok) {
+        throw new Error("something went wrong!");
+      }
+      setSuccessMessage("Password updated successfully!");
+      setShowAlert(true);
+    } catch (err) {
+      console.error(err);
+      setShowAlert(true);
+    }
 
-  //     setUserData({
-  //       ...userData,
-  //       password: "",
-  //     });
-  //     setValidated(false);
-  //   };
+    setUserData({
+      ...userData,
+      password: "",
+    });
+    setValidated(false);
+  };
 
   const handleLogout = () => {
     sessionStorage.setItem("session", false);
@@ -121,7 +121,12 @@ const UserInformation = () => {
               </Form.Control.Feedback>
             </Form.Group>
 
-            <Button className="login-button" type="submit" variant="primary">
+            <Button
+              className="login-button"
+              type="submit"
+              variant="primary"
+              onChange={handleFormSubmit}
+            >
               Change Password
             </Button>
             <Button

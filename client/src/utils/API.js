@@ -34,6 +34,16 @@ export const loginUser = (userData) => {
   });
 };
 
+export const updateUser = (userData) => {
+  return fetch("/api/users/me", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(userData),
+  });
+};
+
 export const findMe = (userData) => {
   return fetch("/api/users/me", {
     method: "GET",

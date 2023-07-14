@@ -38,6 +38,20 @@ const getUsers = (req, res) => {
     });
 };
 
+const updateUser = async (req, res) => {
+  try {
+    const user = await User.findById({ _id: req.session.userId }, req.body, {
+      new: true,
+    });
+    if (!user) {
+      return res.status(404).json({ message: "No user with this id!" });
+    }
+    return res.json({ message: "user successfully updated!", user });
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+};
+
 const createUser = async ({ body }, res) => {
   const user = await User.create(body);
 
@@ -95,4 +109,5 @@ module.exports = {
   createUser,
   deleteUser,
   login,
+  updateUser,
 };
