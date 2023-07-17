@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "../styles/CreatedBoard.css";
+import "../styles/TaskBoard.css";
 import { findMe } from "../utils/API";
+import Offcanvas from "react-bootstrap/Offcanvas";
+import { BiArrowToRight, BiFontSize } from "react-icons/bi";
 
 export default function Boards() {
   const [boards, setBoards] = useState([]);
+  const [boardId, setBoardId] = useState(null);
+  const [show, setShow] = useState(false);
 
+  console.log(boardId);
   useEffect(() => {
     loadUserData();
   }, []);
@@ -23,15 +29,42 @@ export default function Boards() {
     }
   };
 
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const handleBoardClick = (id) => {
+    setBoardId(id);
+    handleClose(); // Close the Offcanvas
+  };
+
   return (
-    <div className="col-md-8">
-      <ul>
-        {boards.map((board) => (
-          <li className="board-list" key={board._id}>
-            {board.title}
-          </li>
-        ))}
-      </ul>
-    </div>
+    <>
+      <div className="view-allboards" onClick={handleShow}>
+        <BiArrowToRight
+          style={{ fontSize: "20px", color: "grey" }}
+          href="/Login"
+        />
+      </div>
+      <Offcanvas className="off-canvas" show={show} onHide={handleClose}>
+        <Offcanvas.Header closeButton className="close-button">
+          <Offcanvas.Title>Boards</Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+          <div className="col-md-8">
+            <ul>
+              {boards.map((board) => (
+                <li
+                  className="board-list"
+                  key={board._id}
+                  onClick={() => handleBoardClick(board._id)}
+                >
+                  {board.title}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Offcanvas.Body>
+      </Offcanvas>
+    </>
   );
 }

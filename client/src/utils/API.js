@@ -64,12 +64,12 @@ export const createBoard = (boardData) => {
   });
 };
 
-// export const getBoards = () => {
+// export const getBoards = (boardData) => {
 //   return fetch(`/api/boards/${}`, {
 //     method: "GET",
 //     headers: {
 //       "Content-Type": "application/json",
 //     },
-//     body: JSON.stringify(loginUser),
+//     body: JSON.stringify(boardData),
 //   });
 // };
