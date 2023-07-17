@@ -18,15 +18,18 @@ export default function Tasks() {
   }, []);
 
   return (
-    <div className="col-md-8">
-      <ul>
-        {tasks.map((task) => (
-          <li className="task-border" key={task._id}>
-            <p>{task.title}</p>
-            {/* <p>{task.description}</p> */}
-          </li>
-        ))}
-      </ul>
+    <div className="created-tasks">
+      <div className="col-md-8">
+        <ul>
+          {tasks.map((task) => (
+            <li className="task-border" key={task._id}>
+              <p>{task.title}</p>
+              {/* <p>{task.description}</p> */}
+            </li>
+          ))}
+        </ul>
+        <button className="created-taskbutton">+ Add Another Task</button>
+      </div>
     </div>
   );
 }

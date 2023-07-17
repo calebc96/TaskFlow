@@ -13,3 +13,23 @@
     margin: 10px;
     list-style-type: none;
 }
+
+
+.created-tasks {
+    margin-left: 25px;
+}
+
+.created-taskbutton {
+    background: rgb(204, 204, 204); /* Fallback for older browsers without RGBA-support */
+    background: rgba(204, 204, 204, 0.2);
+    font-size: 14px;
+    width: 200px;
+    height: 40px;
+    border: none;
+    border-radius: 15px;
+    color: rgb(145, 145, 145);
+    padding-top: 3px;
+    text-align: center;
+    margin: 10px;
+    list-style-type: none;
+}
