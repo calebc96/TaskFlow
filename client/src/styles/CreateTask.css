@@ -70,6 +70,19 @@
     border: 2px solid black;
 }
 
+.board-test-two {
+    background-image: url("../images/beach.jpg")  !important;
+    margin-top: 15px;
+    height: 15vh;
+    width: 40vh;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #151313;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: 2px solid black;
+}
+
 .board-image-default{
     background-image: url("../images/reflection.jpg");
     margin-top: 15px;

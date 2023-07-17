@@ -2,6 +2,37 @@
     margin: 0px;
     padding: 0px;
 }
+.board-background-one {
+    background-image: url("../images/reflection.jpg")  !important;
+    background-color: #151313;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.board-background-two {
+    background-image: url("../images/Fall.jpg")  !important;
+    background-color: #151313;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.board-background-three {
+    background-image: url("../images/Winter.jpg")  !important;
+    background-color: #151313;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.board-background-four {
+    background-image: url("../images/Yosemite.jpg")  !important;
+    background-color: #151313;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.board-background-five {
+    background-image: url("../images/beach.jpg")  !important;
+    background-color: #151313;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 
 .board-background {
     background-image: url("../images/beach.jpg");
