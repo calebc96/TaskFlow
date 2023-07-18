@@ -5,7 +5,6 @@ const {
   getsingleBoard,
   createBoard,
 } = require("../../controllers/boardController");
-const { create } = require("../../models/User");
 
 // import middleware
 const { authMiddleware } = require("../../utils/auth");

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "../styles/CreatedTasks.css";
 import { findMe } from "../utils/API";
-
-// import { Login } from "../pages/Login";
+import { createTasks } from "../utils/API";
 
 export default function Tasks() {
   const [tasks, setTasks] = useState([]);
+  const [title, setTitle] = useState("");
 
   useEffect(() => {
     async function fetchTasks() {
@@ -16,6 +16,31 @@ export default function Tasks() {
     }
     fetchTasks();
   }, []);
+
+  const handleCreateTask = async () => {
+    try {
+      const response = await findMe();
+      const user = await response.json();
+      const userId = user.user._id;
+
+      // Check if userId exists
+      if (!userId) {
+        // Handle the case where userId is not available
+        console.log("User ID not found in session");
+        return;
+      }
+
+      await createTasks({
+        title: title,
+      });
+
+      // // Task creation success logic here
+      // handleClose();
+    } catch (error) {
+      // Task creation error handling here
+      console.log(error);
+    }
+  };
 
   return (
     <div className="created-tasks">
@@ -28,7 +53,17 @@ export default function Tasks() {
             </li>
           ))}
         </ul>
-        <button className="created-taskbutton">+ Add Another Task</button>
+        <button
+          variant="success"
+          onClick={handleCreateTask}
+          className="created-taskbutton"
+        >
+          <input
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          ></input>
+          + Add Another Task
+        </button>
       </div>
     </div>
   );

@@ -64,6 +64,16 @@ export const createBoard = (boardData) => {
   });
 };
 
+export const createTasks = (taskData) => {
+  return fetch("/api/tasks", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(taskData),
+  });
+};
+
 // export const getBoards = (boardData) => {
 //   return fetch(`/api/boards/${}`, {
 //     method: "GET",
