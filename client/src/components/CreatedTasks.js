@@ -22,6 +22,10 @@ export default function CreatedTasks({ boardId }) {
     }
   };
 
+  const handleTaskCreated = () => {
+    loadTasks(); // Fetch the updated list of tasks when a new task is created
+  };
+
   return (
     <div className="created-tasks">
       <div className="col-md-8">
@@ -33,7 +37,7 @@ export default function CreatedTasks({ boardId }) {
             </li>
           ))}
         </ul>
-        <CreateNewTask boardId={boardId} />
+        <CreateNewTask boardId={boardId} onTaskCreated={handleTaskCreated} />
       </div>
     </div>
   );
