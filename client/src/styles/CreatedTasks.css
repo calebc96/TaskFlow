@@ -12,6 +12,7 @@
     text-align: left;
     margin: 10px;
     list-style-type: none;
+    animation: .08s ease-in 1 slideInFromTop;
 }
 
 
@@ -58,7 +59,17 @@
     margin-left: 20px;
 }
 
+@keyframes slideInFromTop {
+    0% {
+        transform: translateY(-20%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
 .Create-New {
+    animation: .2s ease-in  1 slideInFromTop;
     margin-left: 43px;
     width: 300px;
     height: 110px;
