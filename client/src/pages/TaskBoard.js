@@ -5,7 +5,7 @@ import "../styles/TaskBoard.css";
 import { findMe } from "../utils/API";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { BiArrowToRight, BiFontSize } from "react-icons/bi";
-import Tasks from "../components/CreatedTasks";
+import CreatedTasks from "../components/CreatedTasks";
 
 export default function Boards() {
   const [boards, setBoards] = useState([]);
@@ -18,10 +18,10 @@ export default function Boards() {
   }, []);
 
   useEffect(() => {
-    loadTasks();
+    loadBoards();
   }, [boardId]);
 
-  const loadTasks = async () => {
+  const loadBoards = async () => {
     try {
       const response = await fetch(`/api/boards/${boardId}`);
       const data = await response.json();
@@ -86,7 +86,7 @@ export default function Boards() {
             </div>
           </Offcanvas.Body>
         </Offcanvas>
-        <Tasks />
+        <CreatedTasks boardId={boardId} />
       </div>
     </div>
   );

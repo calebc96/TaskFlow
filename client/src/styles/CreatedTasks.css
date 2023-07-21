@@ -21,13 +21,13 @@
 
 .created-taskbutton {
     background: rgb(204, 204, 204); /* Fallback for older browsers without RGBA-support */
-    background: rgba(204, 204, 204, 0.2);
+    background: rgba(204, 204, 204, 0.4);
     font-size: 14px;
     width: 200px;
     height: 40px;
     border: none;
     border-radius: 15px;
-    color: rgb(188, 188, 188);
+    color: rgb(255, 255, 255);
     padding-top: 3px;
     text-align: center;
     margin: 10px;
