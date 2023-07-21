@@ -41,6 +41,7 @@ export const CreateNewTask = ({ boardId, onTaskCreated }) => {
                 placeholder="Enter task title..."
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
+                required
               />
             </label>
             <button
