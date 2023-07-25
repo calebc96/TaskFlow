@@ -39,7 +39,6 @@ export const CreateNewTask = ({ boardId, onTaskCreated }) => {
               <input
                 className="input-task"
                 placeholder="Enter task title..."
-                value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 required
               />

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../styles/CreatedBoard.css";
 import "../styles/CreateTask.css";
 import "../styles/TaskBoard.css";
-import { findMe, deleteBoards } from "../utils/API";
+import { findMe } from "../utils/API";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { BiArrowToRight, BiX } from "react-icons/bi";
 import CreatedTasks from "../components/CreatedTasks";

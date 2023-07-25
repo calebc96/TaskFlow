@@ -94,7 +94,7 @@ export default function Create() {
         </div>
 
         <label>Board Title</label>
-        <input value={title} onChange={(e) => setTitle(e.target.value)}></input>
+        <input onChange={(e) => setTitle(e.target.value)}></input>
         <label>
           <small>Board title is required.</small>
         </label>
