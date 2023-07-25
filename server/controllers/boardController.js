@@ -2,7 +2,7 @@ const { User, Board } = require("../models");
 
 const getBoards = (req, res) => {
   Board.find()
-    .populate("tasks") // Populate the boards field
+    .populate("categories") // Populate the boards field
     .then(async (boards) => {
       return res.json(boards);
     })
@@ -14,7 +14,7 @@ const getBoards = (req, res) => {
 
 const getsingleBoard = (req, res) => {
   Board.findOne({ _id: req.params.boardId })
-    .populate("tasks")
+    .populate("categories")
     .select("-__v")
     .then(async (board) =>
       !board

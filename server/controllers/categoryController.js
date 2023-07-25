@@ -1,4 +1,4 @@
-const { User, Board, Category } = require("../models");
+const { Board, Category } = require("../models");
 
 const getCategory = (req, res) => {
   Category.find()
@@ -15,8 +15,8 @@ const getCategory = (req, res) => {
 const createCategory = async (req, res) => {
   Category.create(req.body)
     .then((category) => {
-      return User.findOneAndUpdate(
-        { _id: req.body.user_id },
+      return Board.findOneAndUpdate(
+        { _id: req.body.board_id },
         { $addToSet: { categories: category._id } },
         { new: true }
       );

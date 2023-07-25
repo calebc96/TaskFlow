@@ -1,4 +1,4 @@
-const { Task, Board } = require("../models");
+const { Task, Board, Category } = require("../models");
 
 const getTasks = (req, res) => {
   Task.find()
@@ -31,8 +31,8 @@ const getsingleTask = (req, res) => {
 const createTask = async (req, res) => {
   Task.create(req.body)
     .then((task) => {
-      return Board.findOneAndUpdate(
-        { _id: req.body.board_id },
+      return Category.findOneAndUpdate(
+        { _id: req.body.category_id },
         { $addToSet: { tasks: task._id } },
         { new: true }
       );
@@ -40,7 +40,7 @@ const createTask = async (req, res) => {
     .then((board) =>
       !board
         ? res.status(404).json({
-            message: "task created, but found no board with that ID",
+            message: "task created, but found no category with that ID",
           })
         : res.json("Created task 🎉")
     )
