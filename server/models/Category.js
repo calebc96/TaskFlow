@@ -7,7 +7,7 @@ const categorySchema = new Schema({
     ref: "User",
     required: true,
   },
-  category: {
+  name: {
     type: String,
     required: true,
   },

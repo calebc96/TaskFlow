@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import "../styles/CreatedTasks.css";
-import { createTasks } from "../utils/API";
+import { createCategory } from "../utils/API";
 import { BiX, BiPlus } from "react-icons/bi";
 
-export const CreateNewTask = ({ boardId, onTaskCreated }) => {
-  const [title, setTitle] = useState("");
+export const CreateNewTasks = ({ boardId, onTaskCreated }) => {
+  const [list, setlist] = useState("");
   const [showInputFields, setShowInputFields] = useState(false); // State to track if button is clicked
 
   const handleCreateTask = async () => {
     handleCloseInputFields();
     try {
-      await createTasks({
-        title: title,
+      await createCategory({
+        name: list,
         board_id: boardId,
       });
       onTaskCreated(); // Call the onTaskCreated handler passed from the parent component
@@ -38,8 +38,8 @@ export const CreateNewTask = ({ boardId, onTaskCreated }) => {
             <label>
               <input
                 className="input-task"
-                placeholder="Enter task title..."
-                onChange={(e) => setTitle(e.target.value)}
+                placeholder="Enter list title..."
+                onChange={(e) => setlist(e.target.value)}
                 required
               />
             </label>
@@ -48,7 +48,7 @@ export const CreateNewTask = ({ boardId, onTaskCreated }) => {
               onClick={handleCreateTask}
               className="Add-Task btn btn-primary"
             >
-              Add Task
+              Add List
             </button>
             <button
               variant="danger"
@@ -66,7 +66,7 @@ export const CreateNewTask = ({ boardId, onTaskCreated }) => {
           onClick={handleShowInputFields} // Call the handler to show input fields when the button is clicked
           className="created-taskbutton"
         >
-          <BiPlus /> Add another task
+          <BiPlus /> Add another List
         </button>
       )}
     </>

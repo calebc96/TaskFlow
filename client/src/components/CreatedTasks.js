@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../styles/CreatedTasks.css";
-import { CreateNewTask } from "../components/CreateNewTask";
+import { CreateNewTasks } from "./CreateNewList";
 import ViewTasks from "../components/ViewTasks";
 
 export default function CreatedTasks({ boardId }) {
@@ -20,8 +20,8 @@ export default function CreatedTasks({ boardId }) {
     try {
       const response = await fetch(`/api/boards/${boardId}`);
       const data = await response.json();
-      console.log(data.board.category.tasks);
-      setTasks(data.board.category.tasks);
+      console.log(data.board.tasks);
+      setTasks(data.board.tasks);
       // Handle the retrieved data as needed
     } catch (err) {
       console.error(err);
@@ -51,7 +51,7 @@ export default function CreatedTasks({ boardId }) {
               </li>
             ))}
           </ul>
-          <CreateNewTask
+          <CreateNewTasks
             show={show}
             boardId={boardId}
             onTaskCreated={handleTaskCreated}

@@ -74,6 +74,16 @@ export const createTasks = (taskData) => {
   });
 };
 
+export const createCategory = (categoryData) => {
+  return fetch("/api/categories", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(categoryData),
+  });
+};
+
 export const deleteBoards = (boardData) => {
   return fetch(`/api/boards/${boardData}`, {
     method: "DELETE",

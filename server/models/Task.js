@@ -1,9 +1,9 @@
 const { Schema, model } = require("mongoose");
 
 const taskSchema = new Schema({
-  category_id: {
+  board_id: {
     type: Schema.Types.ObjectId,
-    ref: "category",
+    ref: "board",
   },
   title: {
     type: String,

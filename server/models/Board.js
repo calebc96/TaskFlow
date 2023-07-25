@@ -16,6 +16,7 @@ const boardSchema = new Schema({
     required: true,
   },
   categories: [{ type: Schema.Types.ObjectId, ref: "category" }],
+  tasks: [{ type: Schema.Types.ObjectId, ref: "task" }],
 });
 
 const Board = model("board", boardSchema);
