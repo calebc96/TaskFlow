@@ -42,6 +42,7 @@ export default function Create() {
       const response = await findMe();
       const user = await response.json();
       const userId = user.user._id;
+      console.log(user);
 
       // Check if userId exists
       if (!userId) {

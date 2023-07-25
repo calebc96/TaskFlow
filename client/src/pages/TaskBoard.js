@@ -13,6 +13,8 @@ export default function Boards() {
   const [show, setShow] = useState(false);
   const [mainBoard, setMainBoard] = useState([{}]);
 
+  console.log(boards);
+
   useEffect(() => {
     loadUserData();
   }, []);

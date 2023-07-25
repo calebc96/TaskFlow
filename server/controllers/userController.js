@@ -10,7 +10,7 @@ const getMe = (req, res) => {
     .populate({
       path: "boards",
       populate: {
-        path: "tasks",
+        path: "categories",
       },
     })
     .then((user) => {
@@ -28,7 +28,7 @@ const getMe = (req, res) => {
 
 const getUsers = (req, res) => {
   User.find()
-    .populate("boards")
+    .populate("boards") // Populate boards
     .then((users) => {
       res.json(users);
     })

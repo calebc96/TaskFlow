@@ -20,8 +20,8 @@ export default function CreatedTasks({ boardId }) {
     try {
       const response = await fetch(`/api/boards/${boardId}`);
       const data = await response.json();
-      console.log(data.board.tasks);
-      setTasks(data.board.tasks);
+      console.log(data.board.category.tasks);
+      setTasks(data.board.category.tasks);
       // Handle the retrieved data as needed
     } catch (err) {
       console.error(err);

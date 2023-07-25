@@ -19,7 +19,6 @@ const userSchema = new Schema({
     required: true,
   },
   boards: [{ type: Schema.Types.ObjectId, ref: "board" }],
-  categories: [{ type: Schema.Types.ObjectId, ref: "category" }],
 });
 
 // hash user password
