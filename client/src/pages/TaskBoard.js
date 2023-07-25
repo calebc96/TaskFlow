@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import "../styles/CreatedBoard.css";
 import "../styles/CreateTask.css";
 import "../styles/TaskBoard.css";
-import { findMe } from "../utils/API";
+import { findMe, deleteBoards } from "../utils/API";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import { BiArrowToRight, BiFontSize } from "react-icons/bi";
+import { BiArrowToRight, BiX } from "react-icons/bi";
 import CreatedTasks from "../components/CreatedTasks";
 
 export default function Boards() {
@@ -57,6 +57,24 @@ export default function Boards() {
     handleClose(); // Close the Offcanvas
   };
 
+  const handleDeleteBoard = async (boardId) => {
+    try {
+      const response = await fetch(`/api/boards/${boardId}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await response.json();
+      console.log(data); // Assuming the response is an object with a 'task' property containing the 'title' field
+      // Handle the retrieved data as needed
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <div className={`board-background-${mainBoard}`}>
       <div className="main-view">
@@ -74,13 +92,19 @@ export default function Boards() {
             <div className="col-md-8">
               <ul>
                 {boards.map((board) => (
-                  <li
-                    className="board-list"
-                    key={board._id}
-                    onClick={() => handleBoardClick(board._id)}
-                  >
-                    {board.title}
-                  </li>
+                  <div className="created-board-list">
+                    <li
+                      className="board-list"
+                      key={board._id}
+                      onClick={() => handleBoardClick(board._id)}
+                    >
+                      {board.title}
+                    </li>
+                    <BiX
+                      className="delete-board"
+                      onClick={() => handleDeleteBoard(board._id)}
+                    />
+                  </div>
                 ))}
               </ul>
             </div>

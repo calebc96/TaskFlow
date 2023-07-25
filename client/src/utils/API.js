@@ -74,12 +74,12 @@ export const createTasks = (taskData) => {
   });
 };
 
-// export const getBoards = (boardData) => {
-//   return fetch(`/api/boards/${}`, {
-//     method: "GET",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(boardData),
-//   });
-// };
+export const deleteBoards = (boardData) => {
+  return fetch(`/api/boards/${boardData}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(boardData),
+  });
+};

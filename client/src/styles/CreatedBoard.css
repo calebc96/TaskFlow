@@ -20,3 +20,27 @@
     cursor: pointer;
     border-radius: 5px;
 }
+
+.delete-board {
+    color: white;
+    font-size: larger;
+}
+
+.delete-board:hover {
+    cursor: pointer;
+    background-color: rgb(82, 80, 80);
+    color: white;
+    border-radius: 5px;
+}
+
+.created-board-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.board-list {
+    border-radius: 5px 5px;
+    width: 200px;
+    padding-right: 50px;
+}
