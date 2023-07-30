@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../styles/CreatedTasks.css";
 import { CreateNewCategory } from "./CreateNewCategory";
+import { CreateNewTask } from "./CreateNewTask";
 import ViewTasks from "./ViewTasks";
 
 export default function CreatedTasks({ boardId }) {
@@ -36,21 +37,25 @@ export default function CreatedTasks({ boardId }) {
   return (
     <>
       <div className="created-tasks">
-        <div className="categoriesAndTasks">
+        <div>
           <ul className="created-categories">
             {categories.map((task) => (
-              <li
-                className="task-border"
-                key={categories._id}
-                onClick={() => {
-                  handleShow();
-                  setTaskId(categories._id);
-                }}
-              >
-                <p>{task.name}</p>
-              </li>
+              <>
+                <li
+                  className="categories"
+                  key={categories._id}
+                  onClick={() => {
+                    handleShow();
+                    setTaskId(categories._id);
+                  }}
+                >
+                  <p>{task.name}</p>
+                  <CreateNewTask />
+                </li>
+              </>
             ))}
           </ul>
+
           <CreateNewCategory
             show={show}
             boardId={boardId}
@@ -58,6 +63,7 @@ export default function CreatedTasks({ boardId }) {
             handleClose={handleClose} // Pass handleClose as a prop
           />
         </div>
+
         {taskid && <ViewTasks taskid={taskid} />}
       </div>
     </>

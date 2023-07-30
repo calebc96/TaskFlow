@@ -64,7 +64,7 @@ export const CreateNewCategory = ({ boardId, onTaskCreated }) => {
         <button
           variant="success"
           onClick={handleShowInputFields} // Call the handler to show input fields when the button is clicked
-          className="created-taskbutton"
+          className="created-list"
         >
           <BiPlus /> Add another List
         </button>
