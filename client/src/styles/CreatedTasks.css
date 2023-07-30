@@ -17,6 +17,7 @@
 
 
 .created-tasks {
+    display: flex;
     margin-left: 25px;
 }
 
@@ -114,3 +115,10 @@
     border: 2px solid rgb(24, 153, 223);
     outline: none;
 }
+
+.created-categories {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+

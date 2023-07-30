@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../styles/CreatedTasks.css";
-import { CreateNewTasks } from "./CreateNewCategory";
+import { CreateNewCategory } from "./CreateNewCategory";
 import ViewTasks from "./ViewTasks";
 
 export default function CreatedTasks({ boardId }) {
@@ -36,8 +36,8 @@ export default function CreatedTasks({ boardId }) {
   return (
     <>
       <div className="created-tasks">
-        <div className="col-md-8">
-          <ul>
+        <div className="categoriesAndTasks">
+          <ul className="created-categories">
             {categories.map((task) => (
               <li
                 className="task-border"
@@ -51,7 +51,7 @@ export default function CreatedTasks({ boardId }) {
               </li>
             ))}
           </ul>
-          <CreateNewTasks
+          <CreateNewCategory
             show={show}
             boardId={boardId}
             onTaskCreated={handleTaskCreated}

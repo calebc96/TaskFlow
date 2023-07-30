@@ -3,7 +3,7 @@ import "../styles/CreatedTasks.css";
 import { createCategory } from "../utils/API";
 import { BiX, BiPlus } from "react-icons/bi";
 
-export const CreateNewCategory = ({ boardId, onTaskCreated }) => {
+export const CreateNewTasks = ({ boardId, onTaskCreated }) => {
   const [list, setlist] = useState("");
   const [showInputFields, setShowInputFields] = useState(false); // State to track if button is clicked
 
