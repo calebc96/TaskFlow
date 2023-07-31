@@ -80,11 +80,7 @@
     list-style-type: none;
 }
 
-.Add-Task {
-    width:  90px;
-    height: 40px;
-    margin-left: 20px;
-}
+
 
 @keyframes slideInFromTop {
     0% {
@@ -95,10 +91,20 @@
     }
 }
 
-.Create-New {
+.Create-New-Category {
     animation: .2s ease-in  1 slideInFromTop;
     margin-left: 43px;
     width: 300px;
+    height: 110px;
+    background-color: black;
+    border-radius: 20px;
+    color: white;
+}
+
+
+.Create-New-Task {
+    animation: .2s ease-in  1 slideInFromTop;
+    width: 270px;
     height: 110px;
     background-color: black;
     border-radius: 20px;
@@ -119,7 +125,7 @@
     margin-top: 8px;
 }
 
-.input-task {
+.Input-Task {
     color: rgb(178, 178, 178);
     font-weight: 500;
     padding: 5px;
@@ -134,7 +140,35 @@
     font-weight: 400;
 }
 
-.input-task:active {
+.Add-Task {
+    width:  90px;
+    height: 40px;
+    margin-left: 20px;
+}
+
+
+.Input-Category {
+    color: rgb(178, 178, 178);
+    font-weight: 500;
+    padding: 5px;
+    border-radius: 2px;
+    width: 115%;
+    border: 2px solid rgb(24, 153, 223);
+    outline: none;
+   
+}
+.Input-Category::placeholder {
+    color: #c9c9c9; 
+    font-weight: 400;
+}
+
+.Add-Category {
+    width:  90px;
+    height: 40px;
+    margin-left: 20px;
+}
+
+.input-Category:active {
     padding: 5px;
     border-radius: 2px;
     width: 120%;

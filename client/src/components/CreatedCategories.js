@@ -35,37 +35,35 @@ export default function CreatedTasks({ boardId }) {
   };
 
   return (
-    <>
-      <div className="created-tasks">
-        <div>
-          <ul className="created-categories">
-            {categories.map((task) => (
-              <>
-                <li
-                  className="categories"
-                  key={categories._id}
-                  onClick={() => {
-                    handleShow();
-                    setTaskId(categories._id);
-                  }}
-                >
-                  <p>{task.name}</p>
-                  <CreateNewTask />
-                </li>
-              </>
-            ))}
-          </ul>
+    <div className="created-tasks">
+      <div>
+        <ul className="created-categories">
+          {categories.map((task) => (
+            <>
+              <li
+                className="categories"
+                key={categories._id}
+                onClick={() => {
+                  handleShow();
+                  setTaskId(categories._id);
+                }}
+              >
+                <p>{task.name}</p>
+                <CreateNewTask />
+              </li>
+            </>
+          ))}
+        </ul>
 
-          <CreateNewCategory
-            show={show}
-            boardId={boardId}
-            onTaskCreated={handleTaskCreated}
-            handleClose={handleClose} // Pass handleClose as a prop
-          />
-        </div>
-
-        {taskid && <ViewTasks taskid={taskid} />}
+        <CreateNewCategory
+          show={show}
+          boardId={boardId}
+          onTaskCreated={handleTaskCreated}
+          handleClose={handleClose} // Pass handleClose as a prop
+        />
       </div>
-    </>
+
+      {taskid && <ViewTasks taskid={taskid} />}
+    </div>
   );
 }

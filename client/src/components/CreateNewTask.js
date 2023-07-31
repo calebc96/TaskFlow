@@ -34,10 +34,10 @@ export const CreateNewTask = ({ boardId, onTaskCreated }) => {
       {/* Show the button and the input fields only if showInputFields is true */}
       {showInputFields ? (
         <>
-          <div className="Create-New">
+          <div className="Create-New-Task">
             <label>
               <input
-                className="input-task"
+                className="Input-Task"
                 placeholder="Enter a title for this task..."
                 onChange={(e) => setTitle(e.target.value)}
                 required

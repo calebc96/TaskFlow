@@ -34,10 +34,10 @@ export const CreateNewCategory = ({ boardId, onTaskCreated }) => {
       {/* Show the button and the input fields only if showInputFields is true */}
       {showInputFields ? (
         <>
-          <div className="Create-New">
+          <div className="Create-New-Category">
             <label>
               <input
-                className="input-task"
+                className="Input-Category"
                 placeholder="Enter list title..."
                 onChange={(e) => setlist(e.target.value)}
                 required
@@ -46,7 +46,7 @@ export const CreateNewCategory = ({ boardId, onTaskCreated }) => {
             <button
               variant="success"
               onClick={handleCreateTask}
-              className="Add-Task btn btn-primary"
+              className="Add-Category btn btn-primary"
             >
               Add List
             </button>
