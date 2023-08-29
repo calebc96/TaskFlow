@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { BiX } from "react-icons/bi";
 
-export default function ViewTasks({ taskid }) {
+export default function CreatedTasks({ taskid }) {
   const [show, setShow] = useState(false);
   const [tasks, setTasks] = useState([]);
 

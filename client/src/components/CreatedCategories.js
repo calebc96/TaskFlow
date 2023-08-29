@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../styles/CreatedTasks.css";
 import { CreateNewCategory } from "./CreateNewCategory";
 import { CreateNewTask } from "./CreateNewTask";
-import ViewTasks from "./ViewTasks";
+import CreatedTasks from "./CreatedTasks";
 
 export default function CreatedCategories({ boardId }) {
   const [categories, setCategories] = useState([]);
@@ -30,7 +30,7 @@ export default function CreatedCategories({ boardId }) {
   };
 
   const handleCategoryCreated = () => {
-    loadTasks(); // Fetch the updated list of tasks when a new task is created
+    loadCategories(); // Fetch the updated list of tasks when a new task is created
     handleClose();
   };
 
@@ -63,7 +63,7 @@ export default function CreatedCategories({ boardId }) {
         />
       </div>
 
-      {taskid && <ViewTasks taskid={taskid} />}
+      {taskid && <CreatedTasks taskid={taskid} />}
     </div>
   );
 }
