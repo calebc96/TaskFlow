@@ -3,7 +3,7 @@ import "../styles/CreatedTasks.css";
 import { createCategory } from "../utils/API";
 import { BiX, BiPlus } from "react-icons/bi";
 
-export const CreateNewCategory = ({ boardId, onTaskCreated }) => {
+export const CreateNewCategory = ({ boardId, onCategoryCreated }) => {
   const [list, setlist] = useState("");
   const [showInputFields, setShowInputFields] = useState(false); // State to track if button is clicked
 
@@ -14,7 +14,7 @@ export const CreateNewCategory = ({ boardId, onTaskCreated }) => {
         name: list,
         board_id: boardId,
       });
-      onTaskCreated(); // Call the onTaskCreated handler passed from the parent component
+      onCategoryCreated(); // Call the onTaskCreated handler passed from the parent component
     } catch (error) {
       // Board creation error handling here
       console.log(error);

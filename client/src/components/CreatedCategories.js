@@ -4,7 +4,7 @@ import { CreateNewCategory } from "./CreateNewCategory";
 import { CreateNewTask } from "./CreateNewTask";
 import ViewTasks from "./ViewTasks";
 
-export default function CreatedTasks({ boardId }) {
+export default function CreatedCategories({ boardId }) {
   const [categories, setCategories] = useState([]);
   const [title, setTitle] = useState("");
   const [taskid, setTaskId] = useState("");
@@ -14,10 +14,10 @@ export default function CreatedTasks({ boardId }) {
   const handleShow = () => setShow(true);
 
   useEffect(() => {
-    loadTasks();
+    loadCategories();
   }, [boardId]);
 
-  const loadTasks = async () => {
+  const loadCategories = async () => {
     try {
       const response = await fetch(`/api/boards/${boardId}`);
       const data = await response.json();
@@ -29,7 +29,7 @@ export default function CreatedTasks({ boardId }) {
     }
   };
 
-  const handleTaskCreated = () => {
+  const handleCategoryCreated = () => {
     loadTasks(); // Fetch the updated list of tasks when a new task is created
     handleClose();
   };
@@ -58,7 +58,7 @@ export default function CreatedTasks({ boardId }) {
         <CreateNewCategory
           show={show}
           boardId={boardId}
-          onTaskCreated={handleTaskCreated}
+          onCategoryCreated={handleCategoryCreated}
           handleClose={handleClose} // Pass handleClose as a prop
         />
       </div>
