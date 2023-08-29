@@ -15,6 +15,7 @@ const getBoards = (req, res) => {
 const getsingleBoard = (req, res) => {
   Board.findOne({ _id: req.params.boardId })
     .populate("categories")
+    .populate("tasks") // Populate categories and tasks
     .select("-__v")
     .then(async (board) =>
       !board

@@ -38,7 +38,7 @@ export default function CreatedCategories({ boardId }) {
     <div className="created-tasks">
       <div>
         <ul className="created-categories">
-          {categories.map((task) => (
+          {categories.map((category) => (
             <>
               <li
                 className="categories"
@@ -48,7 +48,7 @@ export default function CreatedCategories({ boardId }) {
                   setTaskId(categories._id);
                 }}
               >
-                <p>{task.name}</p>
+                <p>{category.name}</p>
                 <CreateNewTask />
               </li>
             </>
