@@ -4,7 +4,6 @@
 
 .modal-content {
     background-color: #151313;
-    align-self: center;
     color: grey;
     font-weight: 500;
 }
@@ -178,7 +177,15 @@
     }
 }
 
-input {
+.Input-Task {
+    background-color: #222121;
+    color: rgb(163, 163, 163);
+    margin-right: 10px;
+    border: none;
+    margin-top: 5px;
+}
+
+.Input-Category{
     background-color: #222121;
     color: rgb(163, 163, 163);
     margin-left: 10px;
