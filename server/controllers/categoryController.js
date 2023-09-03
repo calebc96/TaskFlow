@@ -2,7 +2,7 @@ const { Board, Category } = require("../models");
 
 const getCategory = (req, res) => {
   Category.find()
-    .populate("tasks") // Populate the boards field
+    .populate("tasks") // Populate the tasks field
     .then(async (categories) => {
       return res.json(categories);
     })
@@ -24,7 +24,7 @@ const createCategory = async (req, res) => {
     .then((user) =>
       !user
         ? res.status(404).json({
-            message: "board created, but found no user with that ID",
+            message: "Category created, but found no user with that ID",
           })
         : res.json("Created category 🎉")
     )
@@ -50,7 +50,7 @@ const deleteCategory = async (req, res) => {
     );
     if (!user) {
       return res.status(404).json({
-        message: "Board deleted, but no user with this id!",
+        message: "Category deleted, but no user with this id!",
       });
     }
 

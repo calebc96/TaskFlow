@@ -7,7 +7,7 @@ import CreatedTasks from "./CreatedTasks";
 export default function CreatedCategories({ boardId }) {
   const [categories, setCategories] = useState([]);
   const [title, setTitle] = useState("");
-  const [taskid, setTaskId] = useState("");
+  const [categoryid, setcategoryid] = useState("");
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -45,7 +45,7 @@ export default function CreatedCategories({ boardId }) {
                 key={categories._id}
                 onClick={() => {
                   handleShow();
-                  setTaskId(categories._id);
+                  setcategoryid(categories._id);
                 }}
               >
                 <p>{category.name}</p>
@@ -63,7 +63,7 @@ export default function CreatedCategories({ boardId }) {
         />
       </div>
 
-      {taskid && <CreatedTasks taskid={taskid} />}
+      {categoryid && <CreateNewTask categoryid={categoryid} />}
     </div>
   );
 }

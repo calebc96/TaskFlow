@@ -3,16 +3,16 @@ import "../styles/CreatedTasks.css";
 import { createTasks } from "../utils/API";
 import { BiX, BiPlus } from "react-icons/bi";
 
-export const CreateNewTask = ({ boardId }) => {
+export const CreateNewTask = ({ categoryid }) => {
   const [title, setTitle] = useState("");
   const [showInputFields, setShowInputFields] = useState(false); // State to track if button is clicked
-
+  console.log(categoryid);
   const handleCreateTask = async () => {
     handleCloseInputFields();
     try {
       await createTasks({
         title: title,
-        board_id: boardId,
+        category_id: categoryid,
       });
     } catch (error) {
       // Board creation error handling here
