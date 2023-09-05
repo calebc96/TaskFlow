@@ -6,6 +6,7 @@ import { findMe } from "../utils/API";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { BiArrowToRight, BiX } from "react-icons/bi";
 import CreatedCategories from "../components/CreatedCategories";
+import CreatedTasks from "../components/CreatedTasks";
 
 export default function Boards() {
   const [boards, setBoards] = useState([]);

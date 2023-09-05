@@ -16,6 +16,11 @@ app.use(
   })
 );
 
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("Something went wrong on the server!");
+});
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 

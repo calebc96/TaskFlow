@@ -3,7 +3,7 @@ import "../styles/CreatedTasks.css";
 import { CreateNewCategory } from "./CreateNewCategory";
 import { CreateNewTask } from "./CreateNewTask";
 import CreatedTasks from "./CreatedTasks";
-import { ConnectionCreatedEvent } from "mongodb";
+
 
 export default function CreatedCategories({ boardId }) {
   const [categoryIds, setCategoryIds] = useState({});

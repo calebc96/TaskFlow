@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { loginUser } from "../utils/API";
+import { loginUser } from "../utils/API.jsx"
 import "../styles/Login.css";
 
 export default function UserLogin() {
@@ -19,7 +19,8 @@ export default function UserLogin() {
     try {
       const response = await loginUser(userFormData);
       if (!response.ok) {
-        throw new Error("Something went wrong!");
+        const errorData = await response.json();
+        throw new Error(`API Error: ${errorData.message}`);
       }
 
       // Set session in sessionStorage
@@ -28,7 +29,7 @@ export default function UserLogin() {
       const { user } = await response.json();
       console.log(user);
     } catch (err) {
-      console.error(err);
+      console.error("Login Error:", err.message); // Log the error message
       setShowAlert(true);
     }
 
