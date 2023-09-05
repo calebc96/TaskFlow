@@ -5,26 +5,19 @@
   "proxy": "http://localhost:3001",
   "dependencies": {
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "@mui/styled-engine-sc": "^5.12.0",
     "@react-icons/all-files": "^4.1.0",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "babel-plugin-macros": "^3.1.0",
+    "awesome": "^0.0.7",
     "bootstrap": "^5.3.0",
     "bootstrap-icons": "^1.10.5",
-    "font-awesome": "^4.7.0",
-    "jwt-decode": "^2.2.0",
-    "react": "^17.0.0 || ^18.0.0",
+    "font": "^0.0.4",
+    "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",
     "react-dom": "^17.0.0 || ^18.0.0",
     "react-router": "^6.14.1",
     "react-router-dom": "^6.14.1",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "react-scripts": "5.0.1"
   },
   "peerDependencies": {
-    "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0"
   },
   "scripts": {

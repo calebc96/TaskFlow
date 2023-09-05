@@ -113,6 +113,7 @@ export default function Boards() {
           </Offcanvas.Body>
         </Offcanvas>
         <CreatedCategories boardId={boardId} />
+        <CreatedTasks />
       </div>
     </div>
   );

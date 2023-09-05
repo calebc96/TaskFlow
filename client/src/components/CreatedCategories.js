@@ -3,9 +3,12 @@ import "../styles/CreatedTasks.css";
 import { CreateNewCategory } from "./CreateNewCategory";
 import { CreateNewTask } from "./CreateNewTask";
 import CreatedTasks from "./CreatedTasks";
+import { ConnectionCreatedEvent } from "mongodb";
 
 export default function CreatedCategories({ boardId }) {
+  const [categoryIds, setCategoryIds] = useState({});
   const [categories, setCategories] = useState([]);
+  const [tasks, setTasks] = useState([]);
   const [title, setTitle] = useState("");
   const [categoryid, setcategoryid] = useState("");
   const [show, setShow] = useState(false);
@@ -23,6 +26,7 @@ export default function CreatedCategories({ boardId }) {
       const data = await response.json();
       console.log(data.board.categories);
       setCategories(data.board.categories);
+      setTasks(data.board.categories.tasks);
       // Handle the retrieved data as needed
     } catch (err) {
       console.error(err);
@@ -39,19 +43,21 @@ export default function CreatedCategories({ boardId }) {
       <div>
         <ul className="created-categories">
           {categories.map((category) => (
-            <>
-              <li
-                className="categories"
-                key={categories._id}
-                onClick={() => {
-                  handleShow();
-                  setcategoryid(categories._id);
-                }}
-              >
-                <p>{category.name}</p>
-                <CreateNewTask />
-              </li>
-            </>
+            <li
+              className="categories"
+              key={category._id} // Use category._id instead of categories._id
+              onClick={() => {
+                handleShow();
+                setCategoryIds({
+                  ...categoryIds,
+                  [category._id]: category._id,
+                });
+              }}
+            >
+              <p>{category.name}</p>
+              <CreateNewTask categoryid={categoryIds[category._id]} />{" "}
+              {/* Pass the categoryid for each category */}
+            </li>
           ))}
         </ul>
 
@@ -64,6 +70,7 @@ export default function CreatedCategories({ boardId }) {
       </div>
 
       {categoryid && <CreateNewTask categoryid={categoryid} />}
+      {categoryid && <CreatedTasks categoryid={categoryid} />}
     </div>
   );
 }
