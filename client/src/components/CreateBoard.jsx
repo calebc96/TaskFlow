@@ -12,6 +12,8 @@ export default function Create() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+ 
+
   const handleImageClick = (imageIndex) => {
     setSelectedImage(imageIndex);
   };
@@ -57,7 +59,6 @@ export default function Create() {
         user_id: userId,
       });
 
-      // Board creation success logic here
       handleClose();
     } catch (error) {
       // Board creation error handling here
@@ -65,6 +66,21 @@ export default function Create() {
     }
   };
 
+  const loadUserData = async () => {
+    try {
+      //fetches the loggedin user's data
+      const response = await findMe();
+      //parses the response body to json
+      const user = await response.json();
+      console.log(user);
+      //sets the state of the user's data
+      setBoards(user.user.boards);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  
   return (
     <div className="create-board">
       <Button variant="success" onClick={handleShow}>
@@ -109,6 +125,7 @@ export default function Create() {
           </Button>
         </Modal.Footer>
       </Modal>
+      
     </div>
   );
 }

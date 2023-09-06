@@ -5,8 +5,10 @@ import "../styles/TaskBoard.css";
 import { findMe } from "../utils/API";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { BiArrowToRight, BiX } from "react-icons/bi";
-import CreatedCategories from "../components/CreatedCategories";
-import CreatedTasks from "../components/CreatedTasks";
+import CreatedCategories from "./CreatedCategories";
+import CreatedTasks from "./CreatedTasks";
+import CreateBoard from "./CreateBoard";
+
 
 export default function Boards() {
   const [boards, setBoards] = useState([]);
@@ -111,6 +113,7 @@ export default function Boards() {
                 ))}
               </ul>
             </div>
+            {/* <CreateBoard /> */}
           </Offcanvas.Body>
         </Offcanvas>
         <CreatedCategories boardId={boardId} />

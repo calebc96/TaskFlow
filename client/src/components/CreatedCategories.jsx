@@ -68,7 +68,7 @@ export default function CreatedCategories({ boardId }) {
           handleClose={handleClose} // Pass handleClose as a prop
         />
       </div>
-
+        
       {categoryid && <CreateNewTask categoryid={categoryid} />}
       {categoryid && <CreatedTasks categoryid={categoryid} />}
     </div>

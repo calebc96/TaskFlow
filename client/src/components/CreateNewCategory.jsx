@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import "../styles/CreatedTasks.css";
 import { createCategory } from "../utils/API";
 import { BiX, BiPlus } from "react-icons/bi";
@@ -7,9 +7,10 @@ export const CreateNewCategory = ({ boardId, onCategoryCreated }) => {
   const [list, setlist] = useState("");
   const [showInputFields, setShowInputFields] = useState(false); // State to track if button is clicked
 
-  const handleCreateTask = async () => {
+  const handleCreateCategory = async () => {
     handleCloseInputFields();
     try {
+      // Call the API to create a new Category with the input field values
       await createCategory({
         name: list,
         board_id: boardId,
@@ -45,7 +46,7 @@ export const CreateNewCategory = ({ boardId, onCategoryCreated }) => {
             </label>
             <button
               variant="success"
-              onClick={handleCreateTask}
+              onClick={handleCreateCategory}
               className="Add-Category btn btn-primary"
             >
               Add List

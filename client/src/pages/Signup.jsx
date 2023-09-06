@@ -39,12 +39,14 @@ export default function SignupForm() {
         const response = await createUser(userFormData);
 
         if (response.ok) {
+          window.location.replace("/login");
           setShowGoodAlert(true);
           // Clear user data fields after successful submission
           setUserFormData({
             username: "",
             email: "",
             password: "",
+
           });
         } else {
           throw new Error('User creation failed');

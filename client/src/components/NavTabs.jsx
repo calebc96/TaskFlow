@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/Header.css";
 import { BiSolidUserCircle } from "react-icons/bi";
-import Create from "./CreateBoard";
+import CreateBoard from "./CreateBoard";
 import { Link } from "react-router-dom";
 
 export default function Navigation() {
@@ -20,7 +20,7 @@ export default function Navigation() {
           </Link>
         )}
 
-        <Create />
+        <CreateBoard />
         <div className="nav-user">
           {session ? (
             <Link to="/user-information">
