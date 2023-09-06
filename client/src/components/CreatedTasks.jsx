@@ -13,7 +13,7 @@ export default function CreatedTasks({ categoryid }) {
     try {
       const response = await fetch(`/api/categories/${categoryid}`);
       const data = await response.json();
-      console.log(data.category.tasks)
+      console.log(data.category)
       setTasks(data.tasks || []); // Ensure tasks is an array or set it to an empty array
     } catch (err) {
       console.error(err);
@@ -25,7 +25,7 @@ export default function CreatedTasks({ categoryid }) {
       {tasks.length > 0 ? (
         <ul>
           {tasks.map((task) => (
-            <li key={task._id}>{task.title}</li>
+            <li key={task._id}>{category.task.title}</li>
           ))}
         </ul>
       ) : (
