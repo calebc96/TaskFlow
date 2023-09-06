@@ -34,6 +34,23 @@ const createCategory = async (req, res) => {
     });
 };
 
+const getSingleCategory = (req, res) => {
+  Category.findOne({ _id: req.params.categoryId })
+    .populate("tasks")
+    .select("-__v")
+    .then(async (category) =>
+      !category
+        ? res.status(404).json({ message: "No Category with that ID" })
+        : res.json({
+            category,
+          })
+    )
+    .catch((err) => {
+      console.log(err);
+      return res.status(500).json(err);
+    });
+};
+
 const deleteCategory = async (req, res) => {
   try {
     const category = await Category.findOneAndRemove({
@@ -62,6 +79,7 @@ const deleteCategory = async (req, res) => {
 
 module.exports = {
   getCategory,
+  getSingleCategory,
   createCategory,
   deleteCategory,
 };

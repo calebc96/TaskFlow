@@ -9,7 +9,6 @@ export default function CreatedCategories({ boardId }) {
   const [categoryIds, setCategoryIds] = useState({});
   const [categories, setCategories] = useState([]);
   const [tasks, setTasks] = useState([]);
-  const [title, setTitle] = useState("");
   const [categoryid, setcategoryid] = useState("");
   const [show, setShow] = useState(false);
 
@@ -33,6 +32,19 @@ export default function CreatedCategories({ boardId }) {
     }
   };
 
+  const getTasks = async () => {
+    try {
+      const response = await fetch(`/api/categories/${categoryIds}`);
+      const data = await response.json();
+      setTasks(data.tasks); // Assuming that the response contains an array of tasks
+      console.log(data.tasks);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+
+
   const handleCategoryCreated = () => {
     loadCategories(); // Fetch the updated list of tasks when a new task is created
     handleClose();
@@ -55,9 +67,11 @@ export default function CreatedCategories({ boardId }) {
               }}
             >
               <p>{category.name}</p>
-              <CreateNewTask categoryid={categoryIds[category._id]} />{" "}
+              <CreateNewTask categoryid={category._id} />
+              <CreatedTasks categoryid={category._id} />
               {/* Pass the categoryid for each category */}
             </li>
+            
           ))}
         </ul>
 
@@ -70,7 +84,7 @@ export default function CreatedCategories({ boardId }) {
       </div>
         
       {categoryid && <CreateNewTask categoryid={categoryid} />}
-      {categoryid && <CreatedTasks categoryid={categoryid} />}
+  
     </div>
   );
 }
