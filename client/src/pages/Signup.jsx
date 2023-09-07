@@ -79,6 +79,7 @@ export default function SignupForm() {
         >
           Something went wrong with your signup!
         </Alert>
+        {/* Show alert if server response is good */}
         <Alert
           dismissible
           onClose={() => setShowGoodAlert(false)}
